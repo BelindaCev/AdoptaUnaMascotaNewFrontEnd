@@ -5,5 +5,7 @@
     <string name="password">Contraseña</string>
     <string name="recordar_password">¿Has olvidado tu contraseña?</string>
     <string name="iniciar_sesion">INICIAR SESION</string>
-    <string name="registrate">¿Has olvidado tu contraseña? Registrate aquí</string>
+    <string name="registrate">¿Todavía no tienes cuenta?</string>
+    <string name="pulsa_aqui"> Pulsa aquí</string>
+    <string name="registrate_aqui"> Registrate aquí</string>
 </resources>
