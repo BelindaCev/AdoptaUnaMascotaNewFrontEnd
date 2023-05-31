@@ -10,4 +10,8 @@
     <string name="escribe_tu_correo">Introduce tu email y te enviaremos un correo</string>
     <string name="email"> Email</string>
     <string name="enviar">ENVIAR</string>
+    <string name="registate_y_adopta_una_mascota_fabulosa">Registate y adopta una mascota fabulosa</string>
+    <string name="nombre">Nombre</string>
+    <string name="registrate_button">REGISTRATE</string>
+    <string name="todos_los_derechos_reservados">Todos los derechos reservados.</string>
 </resources>
