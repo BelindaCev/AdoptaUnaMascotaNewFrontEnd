@@ -9,4 +9,5 @@
     <color name="rosa_oscuro">#D18DBC</color>
     <color name="negro_opacidad">#292C35</color>
     <color name="azul_claro">#b1bfe2</color>
+    <color name="surface">#FFFFFF</color>
 </resources>

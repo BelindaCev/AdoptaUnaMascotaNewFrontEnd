@@ -14,4 +14,7 @@
     <string name="nombre">Nombre</string>
     <string name="registrate_button">REGISTRATE</string>
     <string name="todos_los_derechos_reservados">Todos los derechos reservados.</string>
+    <string name="repite_pass">Repite contraseña</string>
+    <string name="olvidado_pass">¿Has olvidado tu contraseña?</string>
+    <string name="apellidos">Apellidos</string>
 </resources>
