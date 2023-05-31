@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">AdoptaUnaMascotaApp</string>
     <string name="login_text">Login</string>
-    <string name="nombre_usuario">Nombre de usuario</string>
-    <string name="password">Contraseña</string>
+    <string name="nombre_usuario"> Nombre de usuario</string>
+    <string name="password"> Contraseña</string>
     <string name="recordar_password">¿Has olvidado tu contraseña?</string>
     <string name="iniciar_sesion">INICIAR SESION</string>
     <string name="registrate">¿Todavía no tienes cuenta?</string>
     <string name="pulsa_aqui"> Pulsa aquí</string>
     <string name="registrate_aqui"> Registrate aquí</string>
+    <string name="escribe_tu_correo">Introduce tu email y te enviaremos un correo</string>
+    <string name="email"> Email</string>
+    <string name="enviar">ENVIAR</string>
 </resources>
