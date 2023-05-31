@@ -47,7 +47,7 @@
             android:layout_gravity="center"/>
 
         <EditText
-            android:id="@+id/nombreUsuarioEditText"
+            android:id="@+id/mailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="30dp"
@@ -59,6 +59,7 @@
             android:drawableStart="@drawable/baseline_email_24"/>
 
         <Button
+            android:id="@+id/buttonRecordarPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enviar"
@@ -67,8 +68,6 @@
             android:backgroundTint="@color/azul_oscuro"
             />
         <!--android:onClick="ShowPopUp"-->
-
-
 
     </LinearLayout>
 

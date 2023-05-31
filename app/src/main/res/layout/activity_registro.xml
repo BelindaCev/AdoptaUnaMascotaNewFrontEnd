@@ -33,7 +33,7 @@
 
 
         <EditText
-            android:id="@+id/nombreUsuarioEditText"
+            android:id="@+id/nombreEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="30dp"
@@ -44,7 +44,7 @@
             android:drawableStart="@drawable/baseline_person_24"/>
 
         <EditText
-            android:id="@+id/emialEditText"
+            android:id="@+id/emaillEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="30dp"
@@ -69,6 +69,7 @@
 
 
         <Button
+            android:id="@+id/botonRegistrate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registrate_button"
