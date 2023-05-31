@@ -3,4 +3,7 @@
     <string name="login_text">Login</string>
     <string name="nombre_usuario">Nombre de usuario</string>
     <string name="password">Contraseña</string>
+    <string name="recordar_password">¿Has olvidado tu contraseña?</string>
+    <string name="iniciar_sesion">INICIAR SESION</string>
+    <string name="registrate">¿Has olvidado tu contraseña? Registrate aquí</string>
 </resources>
