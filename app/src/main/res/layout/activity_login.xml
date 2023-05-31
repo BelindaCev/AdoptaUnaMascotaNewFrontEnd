@@ -73,7 +73,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pulsa_aqui"
+                android:text="@string/aqui"
                 android:textColorLink="@color/azul_claro"
                 android:textColor="@color/azul_oscuro"
                 android:textStyle="bold"
@@ -113,7 +113,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/registrate_aqui"
+                android:text="@string/aqui"
                 android:textColorLink="@color/azul_claro"
                 android:textColor="@color/azul_oscuro"
                 android:textStyle="bold"
