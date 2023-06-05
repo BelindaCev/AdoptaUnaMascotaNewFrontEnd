@@ -19,8 +19,8 @@
     <string name="apellidos">Apellidos</string>
     <string name="perros">Perros</string>
     <string name="gatos">Gatos</string>
-    <string name="usuarios">Usuarios</string>
-    <string name="mascotas">Mascotas</string>
+    <string name="usuarios">Gestión usuarios</string>
+    <string name="mascotas">Gestión mascotas</string>
     <string name="solicitar_adopci_n">Solicitar adopción</string>
     <string name="descripci_n">Descripción</string>
     <string name="tel_fono">Teléfono</string>
