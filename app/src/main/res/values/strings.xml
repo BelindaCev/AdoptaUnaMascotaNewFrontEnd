@@ -5,7 +5,7 @@
     <string name="password"> Contraseña</string>
     <string name="recordar_password">¿Has olvidado tu contraseña? Registrate</string>
     <string name="iniciar_sesion">INICIAR SESION</string>
-    <string name="registrate">¿Todavía no tienes cuenta? Pulsa</string>
+    <string name="registrate">¿Todavía no tienes cuenta? Pulsa </string>
     <string name="aqui">  aquí</string>
     <string name="escribe_tu_correo">Introduce tu email y te enviaremos un correo</string>
     <string name="email"> Email</string>
@@ -17,4 +17,14 @@
     <string name="repite_pass">Repite contraseña</string>
     <string name="olvidado_pass">¿Has olvidado tu contraseña?</string>
     <string name="apellidos">Apellidos</string>
+    <string name="perros">Perros</string>
+    <string name="gatos">Gatos</string>
+    <string name="usuarios">Usuarios</string>
+    <string name="mascotas">Mascotas</string>
+    <string name="solicitar_adopci_n">Solicitar adopción</string>
+    <string name="descripci_n">Descripción</string>
+    <string name="tel_fono">Teléfono</string>
+    <string name="fecha_de_nacimiento">Fecha de nacimiento</string>
+    <string name="direcci_n">Dirección</string>
+    <string name="mensaje">Mensaje</string>
 </resources>
