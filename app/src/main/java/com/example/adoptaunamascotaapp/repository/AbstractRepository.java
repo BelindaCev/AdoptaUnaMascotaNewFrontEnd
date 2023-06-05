@@ -17,7 +17,7 @@ public abstract class AbstractRepository {
 
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.134:8080")
+                .baseUrl("http://192.168.1.148:8080")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(oktHttpClient.build())
                 .build();

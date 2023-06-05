@@ -3,7 +3,6 @@ package com.example.adoptaunamascotaapp.vistas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegistraseActivity extends AppCompatActivity {
 
     private EditText nombreET, apellidosET, emailET, passwordET, passwords2ET;
     private Button registrarseBTN;
@@ -50,27 +49,27 @@ public class RegisterActivity extends AppCompatActivity {
         if (nombreET.getText().toString().isEmpty() || apellidosET.getText().toString().isEmpty()
                 || emailET.getText().toString().isEmpty() || passwordET.getText().toString().isEmpty()
                 || passwords2ET.getText().toString().isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Debe rellenar todos los campos",
+            Toast.makeText(RegistraseActivity.this, "Debe rellenar todos los campos",
                     Toast.LENGTH_SHORT).show();
             return false;
         } else if (nombreET.getText().toString().isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Rellene el campo de nombre",
+            Toast.makeText(RegistraseActivity.this, "Rellene el campo de nombre",
                     Toast.LENGTH_SHORT).show();
             return false;
         } else if (apellidosET.getText().toString().isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Rellene el campo de apellidos",
+            Toast.makeText(RegistraseActivity.this, "Rellene el campo de apellidos",
                     Toast.LENGTH_SHORT).show();
             return false;
         } else if (emailET.getText().toString().isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Rellene el campo de email",
+            Toast.makeText(RegistraseActivity.this, "Rellene el campo de email",
                     Toast.LENGTH_SHORT).show();
             return false;
         } else if (passwordET.getText().toString().isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Rellene el campo de contraseña",
+            Toast.makeText(RegistraseActivity.this, "Rellene el campo de contraseña",
                     Toast.LENGTH_SHORT).show();
             return false;
         } else if (!passwordET.getText().toString().equals(passwords2ET.getText().toString())) {
-            Toast.makeText(RegisterActivity.this, "Las contraseñas no coinciden",
+            Toast.makeText(RegistraseActivity.this, "Las contraseñas no coinciden",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -91,8 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Usuario registeredUsuario = response.body();
                     runOnUiThread(() -> {
-                        Toast.makeText(RegisterActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        Toast.makeText(RegistraseActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RegistraseActivity.this, LoginActivity.class);
                         assert registeredUsuario != null;
                         intent.putExtra("email", registeredUsuario.getEmail());
                         intent.putExtra("password", password);
@@ -100,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                     });
                 } else {
                     runOnUiThread(() -> {
-                        Toast.makeText(RegisterActivity.this, "Error en el registro", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistraseActivity.this, "Error en el registro", Toast.LENGTH_SHORT).show();
                     });
                 }
             }

@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailEditText;
     EditText passwordEditText;
     TextView registerTextView;
-    TextView forgetPasswordTextView;
+    TextView RecuperarPasswordTextView;
     Button loginButton;
     UserRepository userRepository;
 
@@ -41,16 +41,16 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.nombreUsuarioEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         registerTextView = findViewById(R.id.aquiRegistrate);
-        forgetPasswordTextView = findViewById(R.id.aquiRecordarPass);
+        RecuperarPasswordTextView = findViewById(R.id.aquiRecordarPass);
         loginButton = findViewById(R.id.loginButton);
 
         registerTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            Intent intent = new Intent(LoginActivity.this, RegistraseActivity.class);
             startActivity(intent);
         });
 
-        forgetPasswordTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, RecoverPasswordActivity.class);
+        RecuperarPasswordTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RecuperarPasswordActivity.class);
             startActivity(intent);
         });
 
