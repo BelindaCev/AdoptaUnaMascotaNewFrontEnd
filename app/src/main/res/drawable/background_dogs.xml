@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Drawable para el color de fondo -->
+    <item android:id="@+id/background_shape">
+        <shape>
+            <solid android:color="#fff" /> <!-- Cambia el color según tus preferencias -->
+
+        </shape>
+    </item>
+
+    <!-- Drawable para la imagen -->
+    <item android:id="@+id/image">
+        <bitmap android:src="@drawable/icono_perro" /> <!-- Reemplaza con tu imagen -->
+    </item>
+</layer-list>
