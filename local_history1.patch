@@ -1,0 +1,823 @@
+Index: app/src/main/res/layout/activity_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_home.xml b/app/src/main/res/layout/activity_home.xml
+new file mode 100644
+--- /dev/null	(date 1685989310651)
++++ b/app/src/main/res/layout/activity_home.xml	(date 1685989310651)
+@@ -0,0 +1,88 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++
++    <LinearLayout
++        android:orientation="vertical"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_gravity="center_horizontal">
++
++        <ImageView
++            android:id="@+id/imageView"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center"
++            android:src="@drawable/logo"
++            />
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="horizontal"
++            android:gravity="center_horizontal">
++
++            <LinearLayout
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:orientation="vertical"
++                android:gravity="center_horizontal">
++
++                <ImageButton
++                    android:id="@+id/perro"
++                    android:layout_width="180dp"
++                    android:layout_height="180dp"
++                    android:maxHeight="50dp"
++                    android:maxWidth="50dp"
++                    android:layout_marginRight="10dp"
++                    android:scaleType="fitCenter"
++                    android:backgroundTint="@color/white"
++                    android:src="@drawable/background_dogs"
++                    android:contentDescription="Enter How Much Cookies You Want"
++                    android:hint="e.g 5"
++                    />
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="@string/perros"
++                    android:textStyle="bold"
++                    android:textSize="20sp"
++                    android:textColor="@color/black"/>
++
++            </LinearLayout>
++
++            <LinearLayout
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:orientation="vertical"
++                android:gravity="center_horizontal">
++
++                <ImageButton
++                    android:id="@+id/gato"
++                    android:layout_width="180dp"
++                    android:layout_height="180dp"
++                    android:maxHeight="50dp"
++                    android:maxWidth="50dp"
++                    android:scaleType="fitCenter"
++                    android:backgroundTint="@color/white"
++                    android:src="@drawable/background_cats"
++                    android:contentDescription="Enter How Much Cookies You Want"
++                    android:hint="e.g 5"
++                    />
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="@string/gatos"
++                    android:textStyle="bold"
++                    android:textSize="20sp"
++                    android:textColor="@color/black"/>
++
++            </LinearLayout>
++
++        </LinearLayout>
++
++    </LinearLayout>
++
++</ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_admin.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_admin.xml b/app/src/main/res/layout/activity_admin.xml
+new file mode 100644
+--- /dev/null	(date 1685989310649)
++++ b/app/src/main/res/layout/activity_admin.xml	(date 1685989310649)
+@@ -0,0 +1,88 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++
++    <LinearLayout
++        android:orientation="vertical"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_gravity="center_horizontal">
++
++        <ImageView
++            android:id="@+id/imageView"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center"
++            android:src="@drawable/logo"
++            />
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="horizontal"
++            android:gravity="center_horizontal">
++
++            <LinearLayout
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:orientation="vertical"
++                android:gravity="center_horizontal">
++
++                <ImageButton
++                    android:id="@+id/perro"
++                    android:layout_width="180dp"
++                    android:layout_height="180dp"
++                    android:maxHeight="50dp"
++                    android:maxWidth="50dp"
++                    android:layout_marginRight="10dp"
++                    android:scaleType="fitCenter"
++                    android:backgroundTint="@color/white"
++                    android:src="@drawable/background_usuarios"
++                    android:contentDescription="Enter How Much Cookies You Want"
++                    android:hint="e.g 5"
++                    />
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="@string/usuarios"
++                    android:textStyle="bold"
++                    android:textSize="20sp"
++                    android:textColor="@color/black"/>
++
++            </LinearLayout>
++
++            <LinearLayout
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:orientation="vertical"
++                android:gravity="center_horizontal">
++
++                <ImageButton
++                    android:id="@+id/gato"
++                    android:layout_width="180dp"
++                    android:layout_height="180dp"
++                    android:maxHeight="50dp"
++                    android:maxWidth="50dp"
++                    android:scaleType="fitCenter"
++                    android:backgroundTint="@color/white"
++                    android:src="@drawable/background_mascotas"
++                    android:contentDescription="Enter How Much Cookies You Want"
++                    android:hint="e.g 5"
++                    />
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="@string/mascotas"
++                    android:textStyle="bold"
++                    android:textSize="20sp"
++                    android:textColor="@color/black"/>
++
++            </LinearLayout>
++
++        </LinearLayout>
++
++    </LinearLayout>
++
++</ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_lista_item.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_lista_item.xml b/app/src/main/res/layout/activity_lista_item.xml
+new file mode 100644
+--- /dev/null	(date 1685989310647)
++++ b/app/src/main/res/layout/activity_lista_item.xml	(date 1685989310647)
+@@ -0,0 +1,76 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:padding="10dp"
++    android:orientation="horizontal">
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:orientation="vertical"
++        android:padding="10dp"
++        >
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="horizontal"
++            >
++            <ImageView
++                android:layout_width="100dp"
++                android:layout_height="100dp"
++                android:src="@drawable/logo"
++                android:layout_marginStart="16dp"/>
++
++            <TextView
++                android:layout_marginLeft="20dp"
++                android:layout_marginTop="40dp"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:gravity="center"
++                android:text="@string/estas_son_nuestras_mascotas"
++                android:textSize="24sp"
++                android:textStyle="bold"/>
++        </LinearLayout>
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:orientation="horizontal"
++            android:padding="10dp"
++            >
++    <ImageView
++        android:id="@+id/imageViewAnimal"
++        android:layout_width="60dp"
++        android:layout_height="60dp"
++        android:src="@drawable/icono_animales"
++        android:scaleType="fitCenter" />
++
++    <LinearLayout
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:orientation="vertical"
++        android:layout_gravity="center_vertical"
++        android:layout_marginStart="8dp">
++
++        <TextView
++            android:id="@+id/textViewAnimalName"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:textSize="16sp"
++            android:textStyle="bold" />
++
++        <TextView
++            android:id="@+id/textViewAnimalDescription"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:textSize="14sp" />
++
++    </LinearLayout>
++
++        </LinearLayout>
++
++</LinearLayout>
++</LinearLayout>
+Index: app/src/main/res/layout/activity_nuevo_animal.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_nuevo_animal.xml b/app/src/main/res/layout/activity_nuevo_animal.xml
+new file mode 100644
+--- /dev/null	(date 1685989483947)
++++ b/app/src/main/res/layout/activity_nuevo_animal.xml	(date 1685989483947)
+@@ -0,0 +1,70 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView
++    xmlns:android="http://schemas.android.com/apk/res/android"
++       android:layout_width="match_parent"
++       android:layout_height="match_parent">
++    
++    
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:orientation="vertical"
++            android:gravity="center_vertical">
++    
++            <ImageView
++                android:id="@+id/imageView"
++                android:layout_width="200dp"
++                android:layout_height="200dp"
++                android:layout_weight="1"
++                android:paddingRight="0dp"
++                android:paddingLeft="0dp"
++                android:layout_gravity="center"
++                android:src="@drawable/logo"
++                />
++    
++            <TextView
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:text="@string/dar_de_alta_nuevo_animal"
++                android:textColor="@color/negro_opacidad"
++                android:textStyle="bold"
++                android:textSize="24sp"
++                android:paddingLeft="15dp"
++                android:paddingRight="15dp"
++                android:gravity="center"
++                android:layout_marginTop="20dp"
++                android:layout_gravity="center"/>
++    
++    
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:gravity="center">
++    
++                <ImageButton
++                    android:id="@+id/button1"
++                    android:layout_width="100dp"
++                    android:layout_height="100dp"
++                    android:src="@drawable/icono_gato"
++                    android:scaleType="fitXY"
++                    android:layout_marginRight="20dp"
++                    android:background="@null"
++                    android:padding="8dp"/>
++                <!--android:onClick="añadirGato"-->
++    
++               <ImageButton
++                   android:id="@+id/button2"
++                    android:layout_width="100dp"
++                    android:layout_height="100dp"
++                    android:scaleType="fitXY"
++                    android:src="@drawable/icono_perro"
++                    android:background="@null"
++                    android:padding="8dp"/>
++                <!--android:onClick="AñadirPerro"-->
++    
++            </LinearLayout>
++            
++       </LinearLayout>
++
++    </ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_lista_animales.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_lista_animales.xml b/app/src/main/res/layout/activity_lista_animales.xml
+new file mode 100644
+--- /dev/null	(date 1685989310644)
++++ b/app/src/main/res/layout/activity_lista_animales.xml	(date 1685989310644)
+@@ -0,0 +1,21 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++    <LinearLayout
++        xmlns:android="http://schemas.android.com/apk/res/android"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal">
++
++        <ListView
++            android:id="@+id/listaAnimales"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent">
++        </ListView>
++
++        </LinearLayout>
++
++</ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_gestion_usuarios.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_gestion_usuarios.xml b/app/src/main/res/layout/activity_gestion_usuarios.xml
+new file mode 100644
+--- /dev/null	(date 1685989310642)
++++ b/app/src/main/res/layout/activity_gestion_usuarios.xml	(date 1685989310642)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_formulario_adopcion.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_formulario_adopcion.xml b/app/src/main/res/layout/activity_formulario_adopcion.xml
+new file mode 100644
+--- /dev/null	(date 1685989310639)
++++ b/app/src/main/res/layout/activity_formulario_adopcion.xml	(date 1685989310639)
+@@ -0,0 +1,144 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:orientation="vertical"
++        >
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="horizontal"
++            >
++            <ImageView
++                android:layout_width="100dp"
++                android:layout_height="100dp"
++                android:src="@drawable/logo"
++                android:layout_marginStart="16dp"/>
++
++            <TextView
++                android:layout_marginLeft="20dp"
++                android:layout_marginTop="40dp"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="@string/solicitar_adopci_n"
++                android:textSize="24sp"
++                android:textStyle="bold"/>
++        </LinearLayout>
++
++        <!-- Card con la información del animal -->
++        <androidx.cardview.widget.CardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_margin="16dp">
++
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="vertical"
++                android:padding="16dp"
++                android:gravity="center">
++
++
++                <ImageView
++                    android:id="@+id/imageViewAnimal"
++                    android:layout_width="150dp"
++                    android:layout_height="150dp"
++                    android:scaleType="centerCrop"
++                    android:src="@drawable/icono_gato" />
++
++                <!-- Nombre del animal -->
++                <TextView
++                    android:id="@+id/textViewAnimalName"
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="@string/nombre"
++                    android:textSize="20sp"
++                    android:textStyle="bold" />
++
++                <!-- Descripción -->
++                <TextView
++                    android:id="@+id/textViewDescription"
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="@string/descripci_n" />
++
++            </LinearLayout>
++
++        </androidx.cardview.widget.CardView>
++
++        <!-- Formulario de adopción -->
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="vertical"
++            android:padding="16dp">
++
++
++            <EditText
++                android:id="@+id/editTextTelefono"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginRight="30dp"
++                android:layout_marginLeft="30dp"
++                android:layout_marginBottom="30dp"
++                android:background="@drawable/edittext_box"
++                android:drawableStart="@drawable/baseline_local_phone_24"
++                android:hint="@string/tel_fono" />
++
++            <!-- Campo FECHA DE NACIMIENTO -->
++            <EditText
++                android:id="@+id/editTextFechaNacimiento"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginRight="30dp"
++                android:layout_marginLeft="30dp"
++                android:layout_marginBottom="30dp"
++                android:background="@drawable/edittext_box"
++                android:drawableStart="@drawable/baseline_calendar_month_24"
++                android:hint="@string/fecha_de_nacimiento" />
++
++            <EditText
++                android:id="@+id/editTextDireccion"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginRight="30dp"
++                android:layout_marginLeft="30dp"
++                android:layout_marginBottom="30dp"
++                android:background="@drawable/edittext_box"
++                android:drawableStart="@drawable/baseline_home_24"
++                android:hint="@string/direcci_n" />
++
++
++            <EditText
++                android:id="@+id/editTextMensaje"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginRight="30dp"
++                android:layout_marginLeft="30dp"
++                android:layout_marginBottom="30dp"
++                android:background="@drawable/edittext_box"
++                android:drawableStart="@drawable/baseline_text_snippet_24"
++                android:hint="@string/mensaje"
++                android:inputType="textMultiLine"
++                android:minLines="3" />
++
++            <!-- Botón de enviar -->
++            <Button
++                android:id="@+id/buttonEnviar"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center"
++                android:padding="10dp"
++                android:backgroundTint="@color/azul_oscuro"
++                android:text="@string/enviar" />
++
++        </LinearLayout>
++
++    </LinearLayout>
++
++</ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_login.xml b/app/src/main/res/layout/activity_login.xml
+--- a/app/src/main/res/layout/activity_login.xml	
++++ b/app/src/main/res/layout/activity_login.xml	(date 1685983628376)
+@@ -40,7 +40,7 @@
+             android:layout_marginLeft="30dp"
+             android:layout_marginBottom="30dp"
+             android:background="@drawable/edittext_box"
+-            android:hint="@string/email"
++            android:hint="@string/nombre_usuario"
+             android:drawableStart="@drawable/baseline_person_24"/>
+ 
+         <EditText
+Index: app/src/main/res/layout/activity_crear_animal.xml
+===================================================================
+diff --git a/app/src/main/res/layout/activity_crear_animal.xml b/app/src/main/res/layout/activity_crear_animal.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/activity_crear_animal.xml	
++++ /dev/null	
+@@ -1,213 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent">
+-
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="vertical">
+-
+-        <LinearLayout
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal">
+-            <ImageView
+-                android:layout_width="100dp"
+-                android:layout_height="100dp"
+-                android:src="@drawable/logo"
+-                android:layout_marginStart="16dp"/>
+-
+-            <TextView
+-                android:layout_marginLeft="20dp"
+-                android:layout_marginTop="40dp"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="@string/a_ade_nueva_mascota"
+-                android:textSize="24sp"
+-                android:textStyle="bold"/>
+-        </LinearLayout>
+-
+-
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal"
+-            android:gravity="center">
+-
+-            <ImageView
+-                android:id="@+id/imageView"
+-                android:layout_width="100dp"
+-                android:layout_height="100dp"
+-                android:scaleType="centerCrop"
+-                android:layout_margin="16dp"
+-                android:background="@drawable/gato"/>
+-
+-            <LinearLayout
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:orientation="vertical"
+-                android:gravity="center">
+-
+-                <Button
+-                    android:id="@+id/buttonCamera"
+-                    android:layout_width="100dp"
+-                    android:layout_height="wrap_content"
+-                    android:backgroundTint="@color/rosa_claro"
+-                    android:text="@string/camara"
+-                    android:layout_margin="8dp"/>
+-
+-                <Button
+-                    android:id="@+id/buttonGallery"
+-                    android:layout_width="100dp"
+-                    android:layout_height="wrap_content"
+-                    android:backgroundTint="@color/rosa_oscuro"
+-                    android:text="@string/galeria"
+-                    android:layout_margin="8dp"/>
+-            </LinearLayout>
+-
+-        </LinearLayout>
+-
+-
+-        <EditText
+-            android:id="@+id/editTextName"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:hint="@string/nombre_de_la_mascota"
+-            android:backgroundTint="@color/azul_oscuro"
+-            android:padding="16dp"
+-            android:layout_marginRight="20dp"
+-            android:layout_marginLeft="20dp"/>
+-
+-        <RadioGroup
+-            android:id="@+id/radioGroupCategories"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal"
+-            android:gravity="center"
+-            android:padding="16dp">
+-
+-            <RadioButton
+-                android:id="@+id/radioButtonDog"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="@string/perro"
+-                android:buttonTint="@color/rosa_oscuro"/>
+-
+-            <RadioButton
+-                android:id="@+id/radioButtonCat"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="@string/gato"
+-                android:buttonTint="@color/rosa_oscuro"
+-                android:checked="true"/>
+-
+-        </RadioGroup>
+-
+-        <!-- Subcategorías -->
+-        <RadioGroup
+-            android:id="@+id/radioGroupSubcategories"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal"
+-            android:padding="16dp">
+-
+-            <!-- Subcategorías para Gato -->
+-            <RadioButton
+-                android:id="@+id/radioButtonCatUnder6Months"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="@string/menor_de_6_meses"
+-                android:buttonTint="@color/rosa_oscuro"
+-                android:visibility="gone"/>
+-
+-            <RadioButton
+-                android:id="@+id/radioButtonCatOver6Months"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="@string/mayor_de_6_meses"
+-                android:buttonTint="@color/rosa_oscuro"
+-                android:visibility="gone"/>
+-
+-            <!-- Subcategorías para Perro -->
+-            <RadioButton
+-                android:id="@+id/radioButtonDogSmall"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="@string/tamano_pequeno"
+-                android:buttonTint="@color/rosa_oscuro"
+-                android:visibility="gone"/>
+-
+-            <RadioButton
+-                android:id="@+id/radioButtonDogMedium"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="@string/tamano_mediano"
+-                android:buttonTint="@color/rosa_oscuro"
+-                android:visibility="gone"/>
+-
+-            <RadioButton
+-                android:id="@+id/radioButtonDogLarge"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="@string/tamano_grande"
+-                android:buttonTint="@color/rosa_oscuro"
+-                android:visibility="gone"/>
+-
+-        </RadioGroup>
+-
+-        <TextView
+-            android:id="@+id/editTextAge"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:text="@string/seleccione_fecha_de_nacimiento_de_la_mascota"
+-            android:layout_marginRight="20dp"
+-            android:layout_marginLeft="20dp"
+-            android:padding="16dp"
+-            android:textSize="16sp"
+-            android:layout_gravity="center"/>
+-
+-        <DatePicker
+-            android:id="@+id/datePicker1"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:datePickerMode="spinner"
+-            android:calendarViewShown="false"
+-            android:layout_gravity="center"/>
+-
+-        <EditText
+-            android:id="@+id/editTextBreed"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:hint="@string/raza_de_la_mascota"
+-            android:backgroundTint="@color/azul_oscuro"
+-            android:layout_marginRight="20dp"
+-            android:layout_marginLeft="20dp"
+-            android:padding="16dp"/>
+-
+-        <EditText
+-            android:id="@+id/editTextDescription"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:hint="@string/descripci_n_de_la_mascota"
+-            android:inputType="textMultiLine"
+-            android:backgroundTint="@color/azul_oscuro"
+-            android:layout_marginRight="20dp"
+-            android:layout_marginLeft="20dp"
+-            android:padding="16dp" />
+-
+-        <Button
+-            android:id="@+id/buttonSubmit"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="@string/enviar"
+-            android:layout_gravity="center"
+-            android:backgroundTint="@color/azul_oscuro"
+-            android:layout_marginTop="20dp"
+-            android:layout_marginBottom="20dp"
+-            android:padding="10dp"/>
+-
+-    </LinearLayout>
+-
+-</ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_registro.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_registro.xml b/app/src/main/res/layout/activity_registro.xml
+--- a/app/src/main/res/layout/activity_registro.xml	
++++ b/app/src/main/res/layout/activity_registro.xml	(date 1685989310704)
+@@ -63,7 +63,6 @@
+             android:layout_marginLeft="30dp"
+             android:hint="@string/email"
+             android:background="@drawable/edittext_box"
+-            android:inputType="textPassword"
+             android:layout_marginBottom="20dp"
+             android:drawableStart="@drawable/baseline_email_24"/>
+ 
