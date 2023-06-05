@@ -10,12 +10,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.repository.UserRepository;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RecuperarPasswordActivity extends AppCompatActivity {
 
     EditText emailET;
     Button enviar;
     UserRepository userRepository;
-
 
 
     @Override
@@ -29,12 +32,27 @@ public class RecuperarPasswordActivity extends AppCompatActivity {
         userRepository = new UserRepository();
 
 
-
         enviar.setOnClickListener(v -> {
             String email = emailET.getText().toString().trim();
-            if (validateFields(email)&& correoCorrecto(email)) {
-                Toast.makeText(RecuperarPasswordActivity.this, "se ha enviado un correo con su nueva contraseña", Toast.LENGTH_SHORT).show();
+            if (validateFields(email)) {
+
+                userRepository.existeUsuarioEmail(email, new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        if (response.isSuccessful() && Boolean.TRUE.equals(response.body())){
+                            Toast.makeText(RecuperarPasswordActivity.this, "se ha enviado un correo con su nueva contraseña", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(RecuperarPasswordActivity.this, "el correo no es correcto", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        Toast.makeText(RecuperarPasswordActivity.this, "Error de petición", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
+
         });
     }
 
@@ -45,7 +63,4 @@ public class RecuperarPasswordActivity extends AppCompatActivity {
         }
         return true;
     }
-    private boolean correoCorrecto(String email) {
-     return userRepository.existeUsuarioEmail(email);
-    }
-    }
+}

@@ -1,18 +1,22 @@
 package com.example.adoptaunamascotaapp.repository;
 
 import android.util.Log;
+import android.widget.Toast;
 
 
 import com.example.adoptaunamascotaapp.modelos.Usuario;
 import com.example.adoptaunamascotaapp.service.ApiService;
 import com.example.adoptaunamascotaapp.tipos.PasswordHttp;
+import com.example.adoptaunamascotaapp.vistas.RecuperarPasswordActivity;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class UserRepository extends AbstractRepository{
@@ -61,7 +65,8 @@ public class UserRepository extends AbstractRepository{
         Call<Void> call = apiService.deleteUser(id);
         call.enqueue(callback);
     }
-    public boolean existeUsuarioEmail(String email){
-    return apiService.existeUsuarioEmail(email);
+    public void existeUsuarioEmail(String email, Callback<Boolean> callback) {
+        Call<Boolean> call = apiService.existeUsuarioEmail(email);
+call.enqueue(callback);
     }
 }

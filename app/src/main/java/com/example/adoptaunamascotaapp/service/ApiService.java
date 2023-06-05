@@ -46,7 +46,7 @@ public interface ApiService {
     Call<Usuario> updateUser(@Body Usuario usuario);
 
     @GET("/api/usuario/email")
-    boolean existeUsuarioEmail(@Query("email") String email);
+    Call<Boolean> existeUsuarioEmail(@Query("email") String email);
 
     @DELETE("api/usuario/{id}")
     Call<Void> deleteUser(@Path("id") long id);
