@@ -3,9 +3,9 @@
     <string name="login_text">Login</string>
     <string name="nombre_usuario"> Nombre de usuario</string>
     <string name="password"> Contraseña</string>
-    <string name="recordar_password">¿Has olvidado tu contraseña? Registrate</string>
+    <string name="recordar_password">¿Has olvidado tu contraseña? Pulsa </string>
     <string name="iniciar_sesion">INICIAR SESION</string>
-    <string name="registrate">¿Todavía no tienes cuenta? Pulsa </string>
+    <string name="registrate">¿Todavía no tienes cuenta? Registrate </string>
     <string name="aqui">  aquí</string>
     <string name="escribe_tu_correo">Introduce tu email y te enviaremos un correo</string>
     <string name="email"> Email</string>

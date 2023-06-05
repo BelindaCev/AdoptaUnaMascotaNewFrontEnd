@@ -61,26 +61,27 @@
             android:gravity="center_horizontal">
 
             <TextView
+                style="@style/LinkText"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="@string/recordar_password"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:gravity="center"
+                android:layout_marginRight="3dp"
                 android:layout_gravity="center"
-                style="@style/LinkText"/>
+                android:gravity="center"
+                android:text="@string/recordar_password"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/aquiRecordarPass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/aqui"
-                android:textColorLink="@color/azul_claro"
-                android:textColor="@color/azul_oscuro"
-                android:textStyle="bold"
-                android:textSize="16sp"
                 android:layout_gravity="center"
-                android:layout_marginTop="0dp"/>
+                android:layout_marginTop="0dp"
+                android:text="@string/aqui"
+                android:textColor="@color/azul_oscuro"
+                android:textColorLink="@color/azul_claro"
+                android:textSize="16sp"
+                android:textStyle="bold" />
             <!--android:onClick="redirectToAnotherScreen"-->
         </LinearLayout>
 
