@@ -43,4 +43,5 @@
     <string name="raza_de_la_mascota">Raza de la mascota</string>
     <string name="descripci_n_de_la_mascota">Descripción de la mascota</string>
     <string name="alt_boton_crear_animal">Botón para añadir animal</string>
+    <string name="listado_de_usuarios">Listado de usuarios</string>
 </resources>
