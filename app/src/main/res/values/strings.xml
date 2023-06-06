@@ -46,4 +46,5 @@
     <string name="listado_de_usuarios">Listado de usuarios</string>
     <string name="a_adir_usuario">Añadir usuario</string>
     <string name="boton_usuarios">botón usuarios</string>
+    <string name="dar_de_alta_nuevo_usuario">Dar de alta nuevo usuario</string>
 </resources>
