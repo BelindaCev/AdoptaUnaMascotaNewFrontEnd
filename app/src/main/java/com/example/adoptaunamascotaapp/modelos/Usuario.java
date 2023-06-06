@@ -20,7 +20,7 @@ public class Usuario implements Serializable {
     @SerializedName("tipoUsuario")
     private TipoUsuario tipoUsuario;
 
-    public Usuario(String nombre, String apellidos, String mail, String password) {
+    public Usuario(long l, String nombre, String apellidos, String mail, String password, TipoUsuario user) {
         this.id=id;
         this.email = mail;
         this.password = password;

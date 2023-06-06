@@ -3,7 +3,6 @@ package com.example.adoptaunamascotaapp.vistas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -80,11 +79,11 @@ public class RegisterActivity extends AppCompatActivity {
     private void registerUser() {
         String password = passwordET.getText().toString();
         Usuario usuario = new Usuario(
-                nombreET.getText().toString(),
+                1L, nombreET.getText().toString(),
                 apellidosET.getText().toString(),
                 emailET.getText().toString(),
-                password
-        );
+                password,
+                TipoUsuario.USER);
         userRepository.registerUser(usuario, new Callback<Usuario>(){
             @Override
             public void onResponse(@NonNull Call<Usuario> call, @NonNull Response<Usuario> response) {

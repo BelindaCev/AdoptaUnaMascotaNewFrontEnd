@@ -16,16 +16,16 @@ public class ListaAnimales extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_animales);
+        setContentView(R.layout.activity_lista_item);
 
         ListView listView = findViewById(R.id.listaAnimales);
 
-        // Crear una lista de objetos Animal (reemplaza esto con tu propia lista)
+        // Crear una lista de objetos Animal
         List<Animal> animalList = new ArrayList<>();
         animalList.add(new Animal(1, "Perro", "Pequeño", "Max", "01/01/2019", "Macho", "Bulldog", "Max es un perro juguetón y amigable.", "05/05/2023", "icono_perro"));
         animalList.add(new Animal(2, "Gato", "Mediano", "Luna", "15/03/2020", "Hembra", "Siamés", "Luna es una gata tranquila y cariñosa.", "10/06/2023", "icono_gato"));
 
-        ListaAdapter adapter = new ListaAdapter(this, R.layout.activity_lista_item, animalList);
+        ListaAdapter adapter = new ListaAdapter(this, R.layout.activity_lista_animals, animalList);
         listView.setAdapter(adapter);
     }
 }
