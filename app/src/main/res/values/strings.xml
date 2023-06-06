@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AdoptaUnaMascotaApp</string>
+    <string name="app_name">Adopta UnaMascota App</string>
     <string name="login_text">Login</string>
     <string name="nombre_usuario"> Nombre de usuario</string>
     <string name="password"> Contraseña</string>
@@ -42,4 +42,5 @@
     <string name="selecciona_fecha_de_nacimiento">Selecciona fecha de nacimiento</string>
     <string name="raza_de_la_mascota">Raza de la mascota</string>
     <string name="descripci_n_de_la_mascota">Descripción de la mascota</string>
+    <string name="alt_boton_crear_animal">Botón para añadir animal</string>
 </resources>
