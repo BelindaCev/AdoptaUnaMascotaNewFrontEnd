@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d("LoginActivity", "User autenticado con éxito, id: " + usuario.getId());
                                 saveUserId(usuario.getId());
                                 if(usuario.getTipoUsuario() == TipoUsuario.ADMIN){
-                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, HomeAdminActivity.class);
                                     intent.putExtra("user", usuario);
                                     startActivity(intent);
                                 }else{
