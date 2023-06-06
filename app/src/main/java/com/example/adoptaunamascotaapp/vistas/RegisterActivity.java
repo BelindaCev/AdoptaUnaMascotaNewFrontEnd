@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.modelos.Usuario;
 import com.example.adoptaunamascotaapp.repository.UserRepository;
+import com.example.adoptaunamascotaapp.tipos.TipoUsuario;
 
 
 import retrofit2.Call;
