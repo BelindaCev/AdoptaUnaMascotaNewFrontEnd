@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+           <LinearLayout
+                android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/logo"
+                    android:layout_marginStart="16dp"/>
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/a_ade_nueva_mascota"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="100dp"
+                   android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/icono_animales"/>
+
+                <LinearLayout
+                   android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <Button
+                       android:id="@+id/buttonCamera"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/rosa_claro"
+                        android:text="@string/camara"
+                        android:layout_margin="8dp"/>
+
+                    <Button
+                        android:id="@+id/buttonGallery"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/rosa_oscuro"
+                        android:text="@string/galeria"
+                        android:layout_margin="8dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nombre"
+                android:backgroundTint="@color/azul_oscuro"
+                android:padding="16dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
+
+            <RadioGroup
+               android:id="@+id/radioGroupCategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <RadioButton
+                    android:id="@+id/radioButtonDog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/perro"
+                    android:buttonTint="@color/rosa_oscuro"/>
+
+                <RadioButton
+                    android:id="@+id/radioButtonCat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gato"
+                    android:buttonTint="@color/rosa_oscuro"
+                    android:checked="true"/>
+
+            </RadioGroup>
+
+            <!-- Subcategorías -->
+            <RadioGroup
+               android:id="@+id/radioGroupSubcategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+               <!-- Subcategorías para Gato -->
+                <RadioButton
+                   android:id="@+id/radioButtonCatUnder6Months"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menor_de_6_meses"
+                    android:buttonTint="@color/rosa_oscuro"
+                    android:visibility="gone"/>
+
+                <RadioButton
+                    android:id="@+id/radioButtonCatOver6Months"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mayor_de_6_meses"
+                    android:buttonTint="@color/rosa_oscuro"
+                    android:visibility="gone"/>
+
+                <!-- Subcategorías para Perro -->
+                <RadioButton
+                    android:id="@+id/radioButtonDogSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tama_o_peque_o"
+                    android:buttonTint="@color/rosa_oscuro"
+                    android:visibility="gone"/>
+
+                <RadioButton
+                    android:id="@+id/radioButtonDogMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tama_o_mediano"
+                    android:buttonTint="@color/rosa_oscuro"
+                    android:visibility="gone"/>
+
+                <RadioButton
+                    android:id="@+id/radioButtonDogLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tama_o_grande"
+                    android:buttonTint="@color/rosa_oscuro"
+                    android:visibility="gone"/>
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/editTextAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/selecciona_fecha_de_nacimiento"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:layout_gravity="center"/>
+
+            <DatePicker
+                android:id="@+id/datePicker1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/editTextBreed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/raza_de_la_mascota"
+                android:backgroundTint="@color/azul_oscuro"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:padding="16dp"/>
+
+            <EditText
+                android:id="@+id/editTextDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/descripci_n_de_la_mascota"
+                android:inputType="textMultiLine"
+                android:backgroundTint="@color/azul_oscuro"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:padding="16dp" />
+
+            <Button
+                android:id="@+id/buttonSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enviar"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/azul_oscuro"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:padding="10dp"/>
+
+       </LinearLayout>
+
+    </ScrollView>
