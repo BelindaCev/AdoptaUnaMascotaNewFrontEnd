@@ -3,10 +3,10 @@
     <string name="login_text">Login</string>
     <string name="nombre_usuario"> Nombre de usuario</string>
     <string name="password"> Contraseña</string>
-    <string name="recordar_password">¿Has olvidado tu contraseña? Pulsa </string>
+    <string name="recordar_password">¿Has olvidado tu contraseña? Pulsa</string>
     <string name="iniciar_sesion">INICIAR SESION</string>
-    <string name="registrate">¿Todavía no tienes cuenta? Registrate </string>
-    <string name="aqui">  aquí</string>
+    <string name="registrate">¿Todavía no tienes cuenta? Regístrate</string>
+    <string name="aqui"> aquí</string>
     <string name="escribe_tu_correo">Introduce tu email y te enviaremos un correo</string>
     <string name="email"> Email</string>
     <string name="enviar">ENVIAR</string>
@@ -42,4 +42,20 @@
     <string name="selecciona_fecha_de_nacimiento">Selecciona fecha de nacimiento</string>
     <string name="raza_de_la_mascota">Raza de la mascota</string>
     <string name="descripci_n_de_la_mascota">Descripción de la mascota</string>
+    <string name="alt_boton_crear_animal">Botón para añadir animal</string>
+    <string name="listado_de_usuarios">Listado de usuarios</string>
+    <string name="a_adir_usuario">Añadir usuario</string>
+    <string name="boton_usuarios">botón usuarios</string>
+    <string name="dar_de_alta_nuevo_usuario">Dar de alta nuevo usuario</string>
+
+    <string-array name="subcategorias_perro">
+        <item>Grande</item>
+        <item>Mediano</item>
+        <item>Pequeño</item>
+    </string-array>
+
+    <string-array name="subcategorias_gato">
+        <item>Más de 6 meses</item>
+        <item>Menos de 6 meses</item>
+    </string-array>
 </resources>

@@ -1,33 +1,47 @@
 package com.example.adoptaunamascotaapp.vistas;
 
-
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adoptaunamascotaapp.R;
 
 public class HomeActivity extends AppCompatActivity {
 
-    ImageButton perroIB;
-    ImageButton gatoIB;
+    private ImageButton perroImageButton;
+    private ImageButton gatoImageButton;
+
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        perroIB = findViewById(R.id.perro);
-        gatoIB = findViewById(R.id.gato);
+        perroImageButton = findViewById(R.id.perro);
+        gatoImageButton = findViewById(R.id.gato);
 
-        perroIB.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, RecuperarPasswordActivity.class);
-            startActivity(intent);
+        perroImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirListaAnimales("Perro");
+            }
+        });
+
+        gatoImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirListaAnimales("Gato");
+            }
         });
     }
 
-
+    private void abrirListaAnimales(String categoria) {
+        Intent intent = new Intent(HomeActivity.this, ListaAnimales.class);
+        intent.putExtra("categoria", categoria);
+        startActivity(intent);
+    }
 }
+

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.modelos.Usuario;
 import com.example.adoptaunamascotaapp.repository.UserRepository;
+import com.example.adoptaunamascotaapp.tipos.TipoUsuario;
 
 
 import retrofit2.Call;
@@ -79,11 +80,11 @@ public class RegistraseActivity extends AppCompatActivity {
     private void registerUser() {
         String password = passwordET.getText().toString();
         Usuario usuario = new Usuario(
-                nombreET.getText().toString(),
+                1L, nombreET.getText().toString(),
                 apellidosET.getText().toString(),
                 emailET.getText().toString(),
-                password
-        );
+                password,
+                TipoUsuario.USER);
         userRepository.registerUser(usuario, new Callback<Usuario>(){
             @Override
             public void onResponse(@NonNull Call<Usuario> call, @NonNull Response<Usuario> response) {
