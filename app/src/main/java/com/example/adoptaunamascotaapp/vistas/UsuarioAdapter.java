@@ -27,7 +27,7 @@ public class UsuarioAdapter extends ArrayAdapter<Usuario> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.activity_lista_item_usuarios, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.activity_lista_usuarios_admin, parent, false);
         }
 
         Usuario usuario = usuarios.get(position);
