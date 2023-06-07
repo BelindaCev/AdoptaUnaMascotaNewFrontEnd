@@ -47,4 +47,15 @@
     <string name="a_adir_usuario">Añadir usuario</string>
     <string name="boton_usuarios">botón usuarios</string>
     <string name="dar_de_alta_nuevo_usuario">Dar de alta nuevo usuario</string>
+
+    <string-array name="subcategorias_perro">
+        <item>Grande</item>
+        <item>Mediano</item>
+        <item>Pequeño</item>
+    </string-array>
+
+    <string-array name="subcategorias_gato">
+        <item>Más de 6 meses</item>
+        <item>Menos de 6 meses</item>
+    </string-array>
 </resources>
