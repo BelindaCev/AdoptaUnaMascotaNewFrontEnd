@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -37,6 +39,9 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
     private Uri cameraImageUrl;
 
     private ImageView fotoAnimal;
+    private Button buttomAgregarAnimal;
+    private EditText nombre;
+    private DatePicker fechaNacimento;
 
 
     @Override
@@ -51,6 +56,7 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
 
         radioGroupCategories = findViewById(R.id.radioGroupCategories);
         radioGroupSubcategories = findViewById(R.id.radioGroupSubcategories);
+        buttomAgregarAnimal = findViewById(R.id.buttonSubmit);
 
         galleryActivity = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -121,6 +127,9 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
             openCamera();
         });
 
+        buttomAgregarAnimal.setOnClickListener(v -> {
+
+        });
 
     }
 
