@@ -15,22 +15,26 @@
             android:src="@drawable/logo"
             android:layout_marginStart="16dp"/>
 
-        <ImageButton
-            android:id="@+id/botonCrearAnimal"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="200dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/icono_crear_animal"
-            android:contentDescription="@string/a_adir_usuario"
-            android:hint="@string/boton_usuarios"
-            android:maxWidth="50dp"
-            android:maxHeight="50dp"
-            android:scaleType="fitCenter" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/estas_son_nuestras_mascotas"
+            android:textSize="24sp"
+            android:textColor="@color/negro_opacidad"
+            android:textStyle="bold"/>
+
     </LinearLayout>
 
+    <Spinner
+        android:id="@+id/subcategorySpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <ListView
-        android:id="@+id/lista_animales_admin"
+        android:id="@+id/lista_animales"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>

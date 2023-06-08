@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void abrirListaAnimales(String categoria) {
-        Intent intent = new Intent(HomeActivity.this, ListaAnimales.class);
+        Intent intent = new Intent(HomeActivity.this, ListaAnimalesActivity.class);
         intent.putExtra("categoria", categoria);
         startActivity(intent);
     }

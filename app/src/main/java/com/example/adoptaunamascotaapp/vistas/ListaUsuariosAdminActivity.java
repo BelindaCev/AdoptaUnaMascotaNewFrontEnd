@@ -14,10 +14,8 @@ import com.example.adoptaunamascotaapp.tipos.TipoUsuario;
 
 import java.util.ArrayList;
 
-public class ListaUsuariosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class ListaUsuariosAdminActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     ArrayList<Usuario> listaUsuarios;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
