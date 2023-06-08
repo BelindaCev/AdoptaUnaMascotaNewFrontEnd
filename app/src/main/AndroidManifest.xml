@@ -21,15 +21,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdoptaUnaMascotaApp"
         tools:targetApi="31">
+
         <activity
-            android:name=".vistas.LoginActivity"
+            android:name=".vistas.ListaUsuariosActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".vistas.RecuperarPasswordActivity" />
         <activity android:name=".vistas.RegistraseActivity" />
         <activity android:name=".vistas.HomeActivity" />
