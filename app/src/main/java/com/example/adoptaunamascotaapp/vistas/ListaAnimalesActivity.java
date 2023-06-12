@@ -28,7 +28,8 @@ public class ListaAnimalesActivity extends AppCompatActivity {
     List<Animal> listaAnimales;
     private Spinner subcategorySpinner;
     private AnimalRepository animalRepository;
-
+    private List<Animal> animalesFiltrados;
+    private AnimalesAdapter adapter;
     private  String categoria;
 
     @Override
@@ -38,6 +39,7 @@ public class ListaAnimalesActivity extends AppCompatActivity {
 
         listaAnimales = new ArrayList<>();
         animalRepository = new AnimalRepository();
+        animalesFiltrados = new ArrayList<>();
 
         ListView listViewAnimales = findViewById(R.id.lista_animales);
         subcategorySpinner = findViewById(R.id.subcategorySpinner);
@@ -53,29 +55,25 @@ public class ListaAnimalesActivity extends AppCompatActivity {
                     listaAnimales = response.body();
 
                     //Filtramos la lista según la subcategoría
-                    List<Animal> animalesFiltrados = filtrarAnimalPorCategoria(listaAnimales, categoria);
+                    animalesFiltrados = filtrarAnimalPorCategoria(listaAnimales, categoria);
 
                     //Actualizamos la interfaz con la nueva lista de animales
-                    AnimalesAdapter adapter = new AnimalesAdapter(ListaAnimalesActivity.this, animalesFiltrados);
+                    adapter = new AnimalesAdapter(ListaAnimalesActivity.this, animalesFiltrados);
                     listViewAnimales.setAdapter(adapter);
 
-                    ArrayAdapter<CharSequence> subcategoriaAdapter;
-                    if(categoria.equals("Perro")) {
-                        subcategoriaAdapter = ArrayAdapter.createFromResource(ListaAnimalesActivity.this, R.array.subcategorias_perro, android.R.layout.simple_spinner_item);
-                    } else if(categoria.equals("Gato")) {
-                        subcategoriaAdapter = ArrayAdapter.createFromResource(ListaAnimalesActivity.this, R.array.subcategorias_gato, android.R.layout.simple_spinner_item);
-                    } else {
-                        subcategoriaAdapter = new ArrayAdapter<>(ListaAnimalesActivity.this, android.R.layout.simple_spinner_item);
-                    }
-                    subcategoriaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    subcategorySpinner.setAdapter(subcategoriaAdapter);
+                    initSubcategoriaSpinnerAdapter(categoria);
 
-                    subcategorySpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    subcategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             String subcategoria =  subcategorySpinner.getSelectedItem().toString();
                             List<Animal> animalesFiltradosPorSubcategoria = filtrarAnimalPorSubcategoria(animalesFiltrados, subcategoria);
                             adapter.actualizarLista(animalesFiltradosPorSubcategoria);
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
                         }
                     });
                     //Ponemos el listener para cuando se clicke en el spinner
@@ -89,6 +87,19 @@ public class ListaAnimalesActivity extends AppCompatActivity {
                 Toast.makeText(ListaAnimalesActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void initSubcategoriaSpinnerAdapter(String categoria) {
+        ArrayAdapter<CharSequence> subcategoriaAdapter;
+        if (categoria.equals("Perro")) {
+            subcategoriaAdapter = ArrayAdapter.createFromResource(ListaAnimalesActivity.this, R.array.subcategorias_perro, android.R.layout.simple_spinner_item);
+        } else if (categoria.equals("Gato")) {
+            subcategoriaAdapter = ArrayAdapter.createFromResource(ListaAnimalesActivity.this, R.array.subcategorias_gato, android.R.layout.simple_spinner_item);
+        } else {
+            subcategoriaAdapter = new ArrayAdapter<>(ListaAnimalesActivity.this, android.R.layout.simple_spinner_item);
+        }
+        subcategoriaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        subcategorySpinner.setAdapter(subcategoriaAdapter);
     }
 
     private  List<Animal> filtrarAnimalPorCategoria(List<Animal> animales, String categoria) {
@@ -109,18 +120,13 @@ public class ListaAnimalesActivity extends AppCompatActivity {
             if (categoria.equals("Perro")) {
                 if (animal.getSubcategoria().equals(subcategoria)) {
                     animalesFiltrados.add(animal);
-                    }
-                } else if (categoria.equals("Gato")) {
-                    if (animal.getSubcategoria().equals(subcategoria)) {
-                        animalesFiltrados.add(animal);
-                    }
+                }
+            } else if (categoria.equals("Gato")) {
+                if (animal.getSubcategoria().equals(subcategoria)) {
+                    animalesFiltrados.add(animal);
                 }
             }
-            return animalesFiltrados;
         }
+        return animalesFiltrados;
     }
-
-
-
-
-
+}

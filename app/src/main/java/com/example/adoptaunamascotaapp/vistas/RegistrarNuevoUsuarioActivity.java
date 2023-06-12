@@ -83,7 +83,7 @@ public class RegistrarNuevoUsuarioActivity extends AppCompatActivity {
                     Usuario registeredUsuario = response.body();
                     runOnUiThread(() -> {
                         Toast.makeText(RegistrarNuevoUsuarioActivity.this, "Usuario dado de alta exitosamente", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegistrarNuevoUsuarioActivity.this, LoginActivity.class);
+                        Intent intent = new Intent(RegistrarNuevoUsuarioActivity.this, ListaUsuariosAdminActivity.class);
                         assert registeredUsuario != null;
                         intent.putExtra("email", registeredUsuario.getEmail());
                         intent.putExtra("password", password);

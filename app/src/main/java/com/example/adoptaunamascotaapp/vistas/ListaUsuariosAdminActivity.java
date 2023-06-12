@@ -1,10 +1,13 @@
 package com.example.adoptaunamascotaapp.vistas;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,12 +26,23 @@ public class ListaUsuariosAdminActivity extends AppCompatActivity implements Ada
     ArrayList<Usuario> listaUsuarios;
     UserRepository userRepository;
 
+    ImageButton nuevoUsuarioButton;
+
     UsuariosAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_usuarios_admin);
+
+        nuevoUsuarioButton = findViewById(R.id.botonCrearUsuario);
+
+        nuevoUsuarioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirDarAltaUsuario();
+            }
+        });
 
         listaUsuarios = new ArrayList<>();
         ListView listViewUsuarios = findViewById(R.id.lista_usuarios);
@@ -78,15 +92,21 @@ public class ListaUsuariosAdminActivity extends AppCompatActivity implements Ada
                     // Eliminar el usuario de la lista
                     listaUsuarios.remove(position);
                     adapter.notifyDataSetChanged();
+                    Toast.makeText(ListaUsuariosAdminActivity.this, "Animal eliminado correctamente", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Manejar respuesta no exitosa
+                    Toast.makeText(ListaUsuariosAdminActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                // Manejar error de red u otro tipo de error
+                Toast.makeText(ListaUsuariosAdminActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void abrirDarAltaUsuario() {
+        Intent intent = new Intent(ListaUsuariosAdminActivity.this, RegistrarNuevoUsuarioActivity.class);
+        startActivity(intent);
     }
 }

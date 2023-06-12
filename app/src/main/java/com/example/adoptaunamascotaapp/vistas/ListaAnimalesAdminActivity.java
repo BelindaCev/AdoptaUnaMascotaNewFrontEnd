@@ -1,8 +1,10 @@
 package com.example.adoptaunamascotaapp.vistas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,10 +29,21 @@ public class ListaAnimalesAdminActivity extends AppCompatActivity {
    ArrayList<Animal> listaAnimales;
     private AnimalRepository animalRepository;
 
+    private ImageButton nuevoAnimalButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_animales_admin);
+
+        nuevoAnimalButton = findViewById(R.id.botonCrearAnimal);
+
+        nuevoAnimalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirDarAltaAnimal();
+            }
+        });
 
         listaAnimales = new ArrayList<>();
         animalRepository = new AnimalRepository();
@@ -85,6 +98,11 @@ public class ListaAnimalesAdminActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void abrirDarAltaAnimal() {
+        Intent intent = new Intent(ListaAnimalesAdminActivity.this, RegistrarAnimalActivity.class);
+        startActivity(intent);
     }
 }
 
