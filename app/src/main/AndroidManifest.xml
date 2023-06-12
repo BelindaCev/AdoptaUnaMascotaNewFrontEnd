@@ -23,7 +23,7 @@
         >
 
         <activity
-            android:name=".vistas.HomeActivity"
+            android:name=".vistas.ListaAnimalesAdminActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
