@@ -1,5 +1,6 @@
 package com.example.adoptaunamascotaapp.vistas;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adoptaunamascotaapp.R;
@@ -84,25 +86,37 @@ public class ListaUsuariosAdminActivity extends AppCompatActivity implements Ada
         Usuario usuario = listaUsuarios.get(position);
         long usuarioId = usuario.getId();
 
-        // Llamar al método deleteUser del repositorio
-        userRepository.deleteUser(usuarioId, new Callback<Void>() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmar eliminación");
+        builder.setMessage("¿Estás seguro de que deseas eliminar este usuario?");
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    // Eliminar el usuario de la lista
-                    listaUsuarios.remove(position);
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(ListaUsuariosAdminActivity.this, "Animal eliminado correctamente", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(ListaUsuariosAdminActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
-                }
-            }
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Llamar al método deleteUser del repositorio
+                userRepository.deleteUser(usuarioId, new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (response.isSuccessful()) {
+                            // Eliminar el usuario de la lista
+                            listaUsuarios.remove(position);
+                            adapter.notifyDataSetChanged();
+                            Toast.makeText(ListaUsuariosAdminActivity.this, "Usuario eliminado correctamente", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(ListaUsuariosAdminActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(ListaUsuariosAdminActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(ListaUsuariosAdminActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
+        builder.setNegativeButton("No", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void abrirDarAltaUsuario() {

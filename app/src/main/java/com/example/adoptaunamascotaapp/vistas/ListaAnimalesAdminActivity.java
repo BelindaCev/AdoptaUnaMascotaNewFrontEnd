@@ -1,5 +1,6 @@
 package com.example.adoptaunamascotaapp.vistas;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adoptaunamascotaapp.R;
@@ -78,24 +80,36 @@ public class ListaAnimalesAdminActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Animal animal = listaAnimales.get(position);
 
-                //llamamos al metodo delete del repositorio
-                animalRepository.deleteAnimal(animal.getId(), new Callback<Void>() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListaAnimalesAdminActivity.this);
+                builder.setTitle("Confirmar eliminación");
+                builder.setMessage("¿Estás seguro de que deseas eliminar este animal?");
+                builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if(response.isSuccessful()) {
-                            listaAnimales.remove(position);
-                            adapter.notifyDataSetChanged();
-                            Toast.makeText(ListaAnimalesAdminActivity.this, "Animal eliminado correctamente", Toast.LENGTH_SHORT).show();
-                        } else  {
-                            Toast.makeText(ListaAnimalesAdminActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // llamamos al metodo delete del repositorio
+                        animalRepository.deleteAnimal(animal.getId(), new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                if(response.isSuccessful()) {
+                                    listaAnimales.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    Toast.makeText(ListaAnimalesAdminActivity.this, "Animal eliminado correctamente", Toast.LENGTH_SHORT).show();
+                                } else  {
+                                    Toast.makeText(ListaAnimalesAdminActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                                }
+                            }
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(ListaAnimalesAdminActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                Toast.makeText(ListaAnimalesAdminActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 });
+                builder.setNegativeButton("No", null);
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }

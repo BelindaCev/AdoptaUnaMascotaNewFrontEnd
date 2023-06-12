@@ -1,5 +1,6 @@
 package com.example.adoptaunamascotaapp.vistas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListaAnimalesActivity extends AppCompatActivity {
+public class ListaAnimalesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     List<Animal> listaAnimales;
     private Spinner subcategorySpinner;
@@ -43,6 +44,8 @@ public class ListaAnimalesActivity extends AppCompatActivity {
 
         ListView listViewAnimales = findViewById(R.id.lista_animales);
         subcategorySpinner = findViewById(R.id.subcategorySpinner);
+
+        listViewAnimales.setOnItemClickListener(this);
 
         // Obtener la categoría seleccionada del Intent
         categoria = getIntent().getStringExtra("categoria");
@@ -128,5 +131,11 @@ public class ListaAnimalesActivity extends AppCompatActivity {
             }
         }
         return animalesFiltrados;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(ListaAnimalesActivity.this, SolicitudAdopcionActivity.class);
+        startActivity(intent);
     }
 }
