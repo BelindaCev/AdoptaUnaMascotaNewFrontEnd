@@ -45,6 +45,8 @@
             <data android:mimeType="image/*" />
         </intent-filter>
         </activity>
+        <activity android:name=".vistas.ListaAnimalesAdminActivity" />
+        <activity android:name=".vistas.HomeActivity" />
         <activity android:name=".vistas.HomeAdminActivity" />
 
     </application>

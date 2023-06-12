@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -42,6 +43,16 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
     private Button buttomAgregarAnimal;
     private EditText nombre;
     private DatePicker fechaNacimento;
+    private EditText raza;
+    private EditText descripcion;
+    private RadioButton mayor6Meses;
+    private RadioButton menor6Meses;
+    private RadioButton pequeno;
+    private RadioButton mendiano;
+    private RadioButton grande;
+    private RadioButton gato;
+    private RadioButton perro;
+
 
 
     @Override
@@ -57,6 +68,7 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
         radioGroupCategories = findViewById(R.id.radioGroupCategories);
         radioGroupSubcategories = findViewById(R.id.radioGroupSubcategories);
         buttomAgregarAnimal = findViewById(R.id.buttonSubmit);
+
 
         galleryActivity = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
