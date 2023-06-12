@@ -52,17 +52,17 @@ public interface ApiService {
     Call<Void> deleteUser(@Path("id") long id);
 
     //Animales
-    @GET("api/animals/")
+    @GET("api/animal")
     Call<List<Animal>> getAnimals();
 
-    @POST("api/animals/")
+    @POST("api/animal")
     Call<Animal> createAnimal(@Body RequestBody animal);
 
 
-    @PUT("api/animals/{id}")
+    @PUT("api/animal")
     Call<Animal> updateAnimal( @Body Animal animal);
 
-    @DELETE("api/animals/{id}")
+    @DELETE("/api/animal/{id}")
     Call<Void> deleteAnimal(@Path("id") long id);
 
 
