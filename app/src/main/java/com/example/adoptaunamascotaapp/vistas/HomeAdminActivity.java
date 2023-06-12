@@ -22,11 +22,11 @@ public class HomeAdminActivity extends AppCompatActivity {
         animalIB = findViewById(R.id.animales);
 
         usuarioIB.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeAdminActivity.this, RecuperarPasswordActivity.class);
+            Intent intent = new Intent(HomeAdminActivity.this, ListaUsuariosAdminActivity.class);
             startActivity(intent);
         });
         animalIB.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeAdminActivity.this, RegistrarAnimalActivity.class);
+            Intent intent = new Intent(HomeAdminActivity.this, ListaAnimalesAdminActivity.class);
             startActivity(intent);
         });
     }

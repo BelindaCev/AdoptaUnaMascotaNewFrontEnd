@@ -1,19 +1,15 @@
 package com.example.adoptaunamascotaapp.vistas;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.modelos.Animal;
 import com.example.adoptaunamascotaapp.tipos.SubcategoriaGato;
-import com.example.adoptaunamascotaapp.tipos.SubcategoriasPerros;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListaAnimalesAdminActivity extends AppCompatActivity {
 
