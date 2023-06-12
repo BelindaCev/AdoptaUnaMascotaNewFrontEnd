@@ -43,4 +43,10 @@ public class AnimalesAdapter extends ArrayAdapter<Animal> {
 
         return convertView;
     }
+
+    public void actualizarLista(List<Animal> nuevosAnimales) {
+        animalList.clear();
+        animalList.addAll(nuevosAnimales);
+        notifyDataSetChanged();
+    }
 }
