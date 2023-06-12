@@ -23,7 +23,7 @@
         >
 
         <activity
-            android:name=".vistas.HomeActivity"
+            android:name=".vistas.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,6 +43,8 @@
             <data android:mimeType="image/*" />
         </intent-filter>
         </activity>
+        <activity android:name=".vistas.ListaAnimalesAdminActivity" />
+        <activity android:name=".vistas.HomeActivity" />
         <activity android:name=".vistas.HomeAdminActivity" />
 
     </application>
