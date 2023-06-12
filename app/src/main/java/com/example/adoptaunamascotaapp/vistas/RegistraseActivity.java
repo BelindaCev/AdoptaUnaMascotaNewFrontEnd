@@ -37,7 +37,6 @@ public class RegistraseActivity extends AppCompatActivity {
         passwords2ET = findViewById(R.id.repeatPasswordEditText);
         registrarseBTN = findViewById(R.id.botonRegistrate);
 
-
         userRepository = new UserRepository();
 
         registrarseBTN.setOnClickListener(v -> {
