@@ -14,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.modelos.Animal;
 import com.example.adoptaunamascotaapp.repository.AnimalRepository;
-import com.example.adoptaunamascotaapp.tipos.SubcategoriaGato;
-import com.example.adoptaunamascotaapp.tipos.SubcategoriasPerro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +25,16 @@ import retrofit2.Response;
 public class ListaAnimalesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     List<Animal> listaAnimales;
-    private Spinner subcategorySpinner;
+
+    private Spinner filtro;
     private AnimalRepository animalRepository;
     private List<Animal> animalesFiltrados;
     private AnimalesAdapter adapter;
-    private  String categoria;
+    private String categoria;
+
+    // Arrays de subcategorías de perros y gatos
+    private String[] subcategoriasPerro;
+    private String[] subcategoriasGato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,93 +46,94 @@ public class ListaAnimalesActivity extends AppCompatActivity implements AdapterV
         animalesFiltrados = new ArrayList<>();
 
         ListView listViewAnimales = findViewById(R.id.lista_animales);
-        subcategorySpinner = findViewById(R.id.subcategorySpinner);
-
         listViewAnimales.setOnItemClickListener(this);
+
+        filtro = findViewById(R.id.subcategorySpinner);
 
         // Obtener la categoría seleccionada del Intent
         categoria = getIntent().getStringExtra("categoria");
 
-        // Llamamos el metodo get de animales
+        // Obtener los arrays de subcategorías según la categoría
+        if (categoria.equals("Perro")) {
+            subcategoriasPerro = getResources().getStringArray(R.array.subcategorias_perro);
+            cargarSpinner(subcategoriasPerro);
+        } else if (categoria.equals("Gato")) {
+            subcategoriasGato = getResources().getStringArray(R.array.subcategorias_gato);
+            cargarSpinner(subcategoriasGato);
+        }
+
+        // Llamamos al método get de animales
         animalRepository.getAnimals(new Callback<List<Animal>>() {
             @Override
             public void onResponse(Call<List<Animal>> call, Response<List<Animal>> response) {
                 if (response.isSuccessful()) {
                     listaAnimales = response.body();
 
-                    //Filtramos la lista según la subcategoría
+                    // Filtramos la lista según la categoría seleccionada
                     animalesFiltrados = filtrarAnimalPorCategoria(listaAnimales, categoria);
 
-                    //Actualizamos la interfaz con la nueva lista de animales
+                    // Actualizamos la interfaz con la nueva lista de animales
                     adapter = new AnimalesAdapter(ListaAnimalesActivity.this, animalesFiltrados);
                     listViewAnimales.setAdapter(adapter);
-
-                    initSubcategoriaSpinnerAdapter(categoria);
-
-                    subcategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String subcategoria =  subcategorySpinner.getSelectedItem().toString();
-                            List<Animal> animalesFiltradosPorSubcategoria = filtrarAnimalPorSubcategoria(animalesFiltrados, subcategoria);
-                            adapter.actualizarLista(animalesFiltradosPorSubcategoria);
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-                    //Ponemos el listener para cuando se clicke en el spinner
-
                 }
             }
 
             @Override
             public void onFailure(Call<List<Animal>> call, Throwable t) {
-                //Mensaje de error
+                // Mensaje de error
                 Toast.makeText(ListaAnimalesActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Manejar los eventos de selección del Spinner
+        filtro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String subcategoriaSeleccionada = parent.getItemAtPosition(position).toString();
+                if (subcategoriaSeleccionada.equals("Filtrar")) {
+                    animalesFiltrados = filtrarAnimalPorCategoria(listaAnimales, categoria);
+                } else {
+                    animalesFiltrados = filtrarAnimalPorCategoriaSubcategoria(listaAnimales, categoria, subcategoriaSeleccionada);
+                }
+                adapter.actualizarLista(animalesFiltrados);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // No es necesario hacer nada
             }
         });
     }
 
-    private void initSubcategoriaSpinnerAdapter(String categoria) {
-        ArrayAdapter<CharSequence> subcategoriaAdapter;
-        if (categoria.equals("Perro")) {
-            subcategoriaAdapter = ArrayAdapter.createFromResource(ListaAnimalesActivity.this, R.array.subcategorias_perro, android.R.layout.simple_spinner_item);
-        } else if (categoria.equals("Gato")) {
-            subcategoriaAdapter = ArrayAdapter.createFromResource(ListaAnimalesActivity.this, R.array.subcategorias_gato, android.R.layout.simple_spinner_item);
-        } else {
-            subcategoriaAdapter = new ArrayAdapter<>(ListaAnimalesActivity.this, android.R.layout.simple_spinner_item);
-        }
-        subcategoriaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        subcategorySpinner.setAdapter(subcategoriaAdapter);
+    //Método para rellenar el spinner con un Array de Strings u otro en función de la categoría recibida
+    private void cargarSpinner(String[] subcategorias) {
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, subcategorias);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filtro.setAdapter(spinnerAdapter);
+        filtro.setSelection(0); // Establecer "Filtrar" como opción seleccionada por defecto
     }
 
-    private  List<Animal> filtrarAnimalPorCategoria(List<Animal> animales, String categoria) {
+    private List<Animal> filtrarAnimalPorCategoria(List<Animal> animales, String categoria) {
         List<Animal> animalesFiltrados = new ArrayList<>();
 
-        for (Animal animal : animales){
+        for (Animal animal : animales) {
             if (animal.getCategoria().equals(categoria)) {
                 animalesFiltrados.add(animal);
             }
         }
-        return  animalesFiltrados;
+
+        return animalesFiltrados;
     }
 
-    private  List<Animal> filtrarAnimalPorSubcategoria(List<Animal> animales, String subcategoria) {
+    private List<Animal> filtrarAnimalPorCategoriaSubcategoria(List<Animal> animales, String categoria, String subcategoria) {
         List<Animal> animalesFiltrados = new ArrayList<>();
 
         for (Animal animal : animales) {
-            if (categoria.equals("Perro")) {
-                if (animal.getSubcategoria().equals(subcategoria)) {
-                    animalesFiltrados.add(animal);
-                }
-            } else if (categoria.equals("Gato")) {
-                if (animal.getSubcategoria().equals(subcategoria)) {
-                    animalesFiltrados.add(animal);
-                }
+            if (animal.getCategoria().equals(categoria) && animal.getSubcategoria().equals(subcategoria)) {
+                animalesFiltrados.add(animal);
             }
         }
+
         return animalesFiltrados;
     }
 

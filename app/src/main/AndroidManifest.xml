@@ -54,6 +54,9 @@
         <activity android:name=".vistas.HomeActivity" />
         <activity android:name=".vistas.SolicitudAdopcionActivity" />
 
+
+
+
     </application>
 
 </manifest>
