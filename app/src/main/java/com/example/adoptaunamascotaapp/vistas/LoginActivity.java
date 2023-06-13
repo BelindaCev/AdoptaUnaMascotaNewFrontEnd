@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.modelos.Usuario;
+import com.example.adoptaunamascotaapp.repository.SessionManager;
 import com.example.adoptaunamascotaapp.repository.UserRepository;
 import com.example.adoptaunamascotaapp.tipos.TipoUsuario;
 
@@ -112,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putLong("userId", userId);
         editor.commit();
 
+        SessionManager.getInstance().setUserId(userId); // Almacena el ID del usuario en la clase SessionManager
         long savedUserId = sharedPreferences.getLong("userId", 0);
         if (savedUserId == userId) {
             Log.d("LoginActivity", "UserId guardado correctamente: " + userId);

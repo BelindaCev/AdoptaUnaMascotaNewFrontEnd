@@ -62,10 +62,12 @@ public interface ApiService {
     Call<Void> deleteAnimal(@Path("id") long id);
 
 
-    @GET("/api/galeria")
-    Call<List<Galeria>> getGaleria(@Query("idAnimal") Long idAnimal);
+    @PUT("api/solicitud")
+    Call<SolicitudAdopcion> putSolicitud (@Body SolicitudAdopcion solicitudAdopcion);
 
-    @Multipart
+    @GET ("/api/galeria")
+    Call <List<Galeria>> getGaleria (@Query("idAnimal") Long idAnimal);
+        @Multipart
     @PUT("/api/galeria")
     Call<Galeria> createGaleria(@Query("idAnimal") Long idAnimal, @Part MultipartBody.Part foto);
 }

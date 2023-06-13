@@ -139,7 +139,16 @@ public class ListaAnimalesActivity extends AppCompatActivity implements AdapterV
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Animal animalSeleccionado = animalesFiltrados.get(position);
+        long idAnimal = animalSeleccionado.getId();
+
+        Intent intent = new Intent(ListaAnimalesActivity.this, SolicitudAdopcionActivity.class);
+        intent.putExtra("idAnimal", idAnimal);
+        startActivity(intent);
+        /*
         Intent intent = new Intent(ListaAnimalesActivity.this, SolicitudAdopcionActivity.class);
         startActivity(intent);
+         */
     }
+
 }

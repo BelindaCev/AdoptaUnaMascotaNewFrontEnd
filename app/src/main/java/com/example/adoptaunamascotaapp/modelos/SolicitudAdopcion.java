@@ -1,16 +1,41 @@
 package com.example.adoptaunamascotaapp.modelos;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.time.LocalDateTime;
+
 public class SolicitudAdopcion {
+    @SerializedName("idAnimal")
     private Long idAnimal;
+    @SerializedName("idUsuario")
     private Long idUsuario;
-    private String nombre;
-    private String apellidos;
+    @SerializedName("telefono")
     private String telefono;
-    private String email;
+    @SerializedName("detalleSolicitud")
     private String detalleSolicitud;
-    private int edad;
-    private String sexo;
+    @SerializedName("fechaNacimiento")
+    private LocalDateTime edad;
+    @SerializedName("domicilio")
     private String domicilio;
+
+    /*
+    public SolicitudAdopcion(Long idAnimal, String telefono, String detalleSolicitud, LocalDateTime edad, String domicilio) {
+        this.idAnimal = idAnimal;
+        this.telefono = telefono;
+        this.detalleSolicitud = detalleSolicitud;
+        this.edad = edad;
+        this.domicilio = domicilio;
+    }
+     */
+
+    public SolicitudAdopcion(Long idAnimal, Long idUsuario, String telefono, String detalleSolicitud, LocalDateTime edad, String domicilio) {
+        this.idAnimal = idAnimal;
+        this.idUsuario = idUsuario;
+        this.telefono = telefono;
+        this.detalleSolicitud = detalleSolicitud;
+        this.edad = edad;
+        this.domicilio = domicilio;
+    }
 
     public Long getIdAnimal() {
         return idAnimal;
@@ -28,36 +53,12 @@ public class SolicitudAdopcion {
         this.idUsuario = idUsuario;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
     public String getTelefono() {
         return telefono;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getDetalleSolicitud() {
@@ -68,20 +69,12 @@ public class SolicitudAdopcion {
         this.detalleSolicitud = detalleSolicitud;
     }
 
-    public int getEdad() {
+    public LocalDateTime getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(LocalDateTime edad) {
         this.edad = edad;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     public String getDomicilio() {
@@ -91,5 +84,4 @@ public class SolicitudAdopcion {
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
-
 }

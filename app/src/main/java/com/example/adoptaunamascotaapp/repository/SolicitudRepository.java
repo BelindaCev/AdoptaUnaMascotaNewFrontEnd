@@ -4,6 +4,7 @@ import com.example.adoptaunamascotaapp.modelos.SolicitudAdopcion;
 import com.example.adoptaunamascotaapp.service.ApiService;
 
 
+import retrofit2.Call;
 import retrofit2.Callback;
 
 public class SolicitudRepository extends AbstractRepository{
@@ -16,7 +17,7 @@ public class SolicitudRepository extends AbstractRepository{
         apiService = retrofit.create(ApiService.class);
     }
     public void registerSolicitud(SolicitudAdopcion solicitud, Callback<SolicitudAdopcion> callback){
-
+        Call<SolicitudAdopcion> call = apiService.putSolicitud(solicitud);
+        call.enqueue(callback);
     }
-
 }

@@ -37,8 +37,6 @@ public class UserRepository extends AbstractRepository{
     }
 
 
-
-
     public void registerUser(Usuario usuario, Callback<Usuario> callback) {
         Call<Usuario> call = apiService.createUser(usuario);
         call.enqueue(callback);
@@ -67,6 +65,6 @@ public class UserRepository extends AbstractRepository{
     }
     public void existeUsuarioEmail(String email, Callback<Boolean> callback) {
         Call<Boolean> call = apiService.existeUsuarioEmail(email);
-call.enqueue(callback);
+        call.enqueue(callback);
     }
 }
