@@ -48,6 +48,8 @@
     <string name="boton_usuarios">botón usuarios</string>
     <string name="dar_de_alta_nuevo_usuario">Dar de alta nuevo usuario</string>
     <string name="registrar">Registrar</string>
+    <string name="hembra">HEMBRA</string>
+    <string name="macho">MACHO</string>
 
     <string-array name="subcategorias_perro">
         <item>Grande</item>

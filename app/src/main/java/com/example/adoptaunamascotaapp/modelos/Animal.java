@@ -1,8 +1,10 @@
 package com.example.adoptaunamascotaapp.modelos;
 
+import com.example.adoptaunamascotaapp.tipos.SexoEnum;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Animal implements Serializable {
     @SerializedName("id")
@@ -14,15 +16,39 @@ public class Animal implements Serializable {
     @SerializedName("nombre")
     String nombre;
     @SerializedName("fechaNacimiento")
-    private String fechaNacimiento;
+    private LocalDate fechaNacimiento;
     @SerializedName("sexo")
-    private String sexo;
+    private SexoEnum sexo;
     @SerializedName("raza")
     String raza;
     @SerializedName("descripcion")
     String descripcion;
     @SerializedName("fechaCreacion")
-    String fechaCreacion;
+    LocalDate fechaCreacion;
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public SexoEnum getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(SexoEnum sexo) {
+        this.sexo = sexo;
+    }
+
+    public LocalDate getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDate fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
 
     public long getId() {
         return id;
@@ -56,21 +82,7 @@ public class Animal implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
-    }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
 
     public String getRaza() {
         return raza;
@@ -88,20 +100,14 @@ public class Animal implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getFechaCreacion() {
-        return fechaCreacion;
-    }
 
-    public void setFechaCreacion(String fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
 
 
 
     public Animal() {
     }
 
-    public Animal(long id, String categoria, String subcategoria, String nombre, String fechaNacimiento, String sexo, String raza, String descripcion, String fechaCreacion, String imageBase64) {
+    public Animal(long id, String categoria, String subcategoria, String nombre, LocalDate fechaNacimiento, SexoEnum sexo, String raza, String descripcion) {
         this.id = id;
         this.categoria = categoria;
         this.subcategoria = subcategoria;
@@ -110,7 +116,6 @@ public class Animal implements Serializable {
         this.sexo = sexo;
         this.raza = raza;
         this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
 
     }
 }

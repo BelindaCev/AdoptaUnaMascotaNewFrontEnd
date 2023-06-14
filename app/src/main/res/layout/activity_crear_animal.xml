@@ -79,7 +79,30 @@
                 android:padding="16dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"/>
+            <RadioGroup
+                android:id="@+id/radioSexo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="16dp">
 
+                <RadioButton
+                    android:id="@+id/radioButtonHembra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hembra"
+                    android:buttonTint="@color/rosa_oscuro"/>
+
+                <RadioButton
+                    android:id="@+id/radioButtonMacho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/macho"
+                    android:buttonTint="@color/rosa_oscuro"
+                    />
+
+            </RadioGroup>
             <RadioGroup
                android:id="@+id/radioGroupCategories"
                 android:layout_width="match_parent"
@@ -101,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/gato"
                     android:buttonTint="@color/rosa_oscuro"
-                    android:checked="true"/>
+                   />
 
             </RadioGroup>
 

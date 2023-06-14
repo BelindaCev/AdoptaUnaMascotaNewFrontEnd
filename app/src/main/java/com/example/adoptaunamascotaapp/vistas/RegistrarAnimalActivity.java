@@ -20,13 +20,20 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adoptaunamascotaapp.R;
+import com.example.adoptaunamascotaapp.modelos.Animal;
 import com.example.adoptaunamascotaapp.repository.AnimalRepository;
 import com.example.adoptaunamascotaapp.repository.GaleriaRepository;
+import com.example.adoptaunamascotaapp.tipos.SexoEnum;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegistrarAnimalActivity extends AppCompatActivity {
 
@@ -45,7 +52,7 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
     private ImageView fotoAnimal;
     private Button buttomAgregarAnimal;
     private EditText nombre;
-    private DatePicker fechaNacimento;
+    private DatePicker fechaNacimentoDP;
     private EditText raza;
     private EditText descripcion;
     private RadioButton mayor6Meses;
@@ -55,6 +62,12 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
     private RadioButton grande;
     private RadioButton gato;
     private RadioButton perro;
+    private RadioButton hembra;
+    private RadioButton macho;
+    private String categoria;
+    private String subcategoria;
+    private SexoEnum sexo;
+    private File imagenAnimal;
 
 
     @Override
@@ -79,9 +92,11 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
         mediano = findViewById(R.id.radioButtonDogMedium);
         grande = findViewById(R.id.radioButtonDogLarge);
         nombre = findViewById(R.id.editTextName);
-        fechaNacimento = findViewById(R.id.datePicker1);
+        fechaNacimentoDP = findViewById(R.id.datePicker1);
         raza = findViewById(R.id.editTextBreed);
         descripcion = findViewById(R.id.editTextDescription);
+        hembra = findViewById(R.id.radioButtonHembra);
+        macho = findViewById(R.id.radioButtonMacho);
 
 
         galleryActivity = registerForActivityResult(
@@ -108,7 +123,7 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
 
                         ImageDecoder.Source source = ImageDecoder.createSource(tempFile);
                         fotoAnimal.setImageBitmap(ImageDecoder.decodeBitmap(source));
-
+                        imagenAnimal = tempFile;
                         tempFile.delete();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -155,28 +170,32 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
 
         buttomAgregarAnimal.setOnClickListener(v -> {
 
-            if (gato.isActivated()) {
-                if (mayor6Meses.isActivated()) {
-
-                } else if (menor6Meses.isActivated()) {
-
+            if (validarCampos() && validarRadioButtoms()) {
+                if (hembra.isChecked()) {
+                    sexo = SexoEnum.HEMBRA;
                 } else {
-                    Toast.makeText(RegistrarAnimalActivity.this, "eliga subcategoria", Toast.LENGTH_SHORT).show();
+                    sexo = SexoEnum.MACHO;
                 }
-            } else if (perro.isActivated()) {
-                if (pequeno.isActivated()) {
-
-                } else if (mediano.isActivated()) {
-
-                } else if (grande.isActivated()) {
-
+                if (gato.isChecked()) {
+                    categoria = "Gato";
+                    if (mayor6Meses.isChecked()) {
+                        subcategoria = "Mayor de 6 meses";
+                    } else {
+                        subcategoria = "Menor de 6 meses";
+                    }
                 } else {
-                    Toast.makeText(RegistrarAnimalActivity.this, "eliga subcategoria", Toast.LENGTH_SHORT).show();
+                    categoria = "Perro";
+                    if (pequeno.isChecked()) {
+                        subcategoria = "Pequeño";
+                    } else if (mediano.isChecked()) {
+                        subcategoria = "Mediano";
+                    } else {
+                        subcategoria = "Grande";
+                    }
                 }
-
-            } else {
-                Toast.makeText(RegistrarAnimalActivity.this, "eliga categoria", Toast.LENGTH_SHORT).show();
+                registrarAnimal(categoria, subcategoria, sexo);
             }
+
         });
 
     }
@@ -201,32 +220,104 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
     }
 
     private boolean validarRadioButtoms() {
-        if (!gato.isActivated() && !perro.isActivated()) {
-            Toast.makeText(RegistrarAnimalActivity.this, "eliga categoria", Toast.LENGTH_SHORT).show();
+        if (!(hembra.isChecked()) && !(macho.isChecked())) {
+            Toast.makeText(RegistrarAnimalActivity.this, "elija sexo del animal", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (gato.isActivated()) {
-            if (!mayor6Meses.isActivated() && !menor6Meses.isActivated()) {
-                Toast.makeText(RegistrarAnimalActivity.this, "eliga subcategoria", Toast.LENGTH_SHORT).show();
-                return false;
-            } else {
-                return true;
-            }
         } else {
-            if (!pequeno.isActivated() && !mediano.isActivated() && !grande.isActivated()) {
-                Toast.makeText(RegistrarAnimalActivity.this, "eliga subcategoria", Toast.LENGTH_SHORT).show();
+
+
+            if (!(gato.isChecked()) && !(perro.isChecked())) {
+                Toast.makeText(RegistrarAnimalActivity.this, "eliga categoria", Toast.LENGTH_SHORT).show();
                 return false;
+            } else if (gato.isChecked()) {
+                if (!mayor6Meses.isChecked() && !menor6Meses.isChecked()) {
+                    Toast.makeText(RegistrarAnimalActivity.this, "eliga subcategoria", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else {
+                    return true;
+                }
             } else {
-                return true;
+                if (!pequeno.isChecked() && !mediano.isChecked() && !grande.isChecked()) {
+                    Toast.makeText(RegistrarAnimalActivity.this, "eliga subcategoria", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else {
+                    return true;
+                }
             }
         }
     }
 
     private boolean validarCampos() {
+        LocalDate fechaNacimiento = capturaFechaNacimiento(fechaNacimentoDP);
         if (nombre.getText().toString().isEmpty()) {
             Toast.makeText(RegistrarAnimalActivity.this, "Escriba el nombre del animal", Toast.LENGTH_SHORT).show();
             return false;
+        } else if (descripcion.getText().toString().isEmpty()) {
+            Toast.makeText(RegistrarAnimalActivity.this, "Escriba la descripción", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (raza.getText().toString().isEmpty()) {
+            Toast.makeText(RegistrarAnimalActivity.this, "Escriba la raza", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (LocalDate.now().isBefore(fechaNacimiento)) {
+            Toast.makeText(RegistrarAnimalActivity.this, "La fecha es incorrecta", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
         }
 
-        return true;
+
+    }
+
+    /**
+     * @param fechaNacimiento
+     * @return a java.util.Date
+     */
+    public static LocalDate capturaFechaNacimiento(DatePicker fechaNacimiento) {
+        int day = fechaNacimiento.getDayOfMonth();
+        int month = fechaNacimiento.getMonth();
+        int year = fechaNacimiento.getYear();
+
+        // Crear un objeto LocalDate con los valores capturados
+        LocalDate fechaNac = LocalDate.of(year, month, day);
+
+        return fechaNac;
+    }
+
+    private void registrarAnimal(String categoria, String subcategoria, SexoEnum sexo) {
+        LocalDate fechaNacimiento = capturaFechaNacimiento(fechaNacimentoDP);
+        Animal animal = new Animal(
+                1L, // Cambiar el valor del ID según corresponda
+                categoria,
+                subcategoria,
+                nombre.getText().toString(),
+                fechaNacimiento,
+                sexo,
+                raza.getText().toString(),
+                descripcion.getText().toString()
+        );
+        animalRepository.createAnimal(animal, new Callback<Animal>() {
+
+            @Override
+            public void onResponse(Call<Animal> call, Response<Animal> response) {
+                Toast.makeText(RegistrarAnimalActivity.this, "Animal dado de alta exitosamente", Toast.LENGTH_SHORT).show();
+                if (response.isSuccessful()) {
+                    Animal animal = response.body();
+                    registrarGaleria(animal.getId());
+                    Intent intent = new Intent(RegistrarAnimalActivity.this, ListaAnimalesAdminActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(RegistrarAnimalActivity.this, "Error en el alta del Animal", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Animal> call, Throwable t) {
+                Toast.makeText(RegistrarAnimalActivity.this, "Error en el alta del Animal", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void registrarGaleria(Long idAnimal) {
+        galeriaRepository.createGaleria(idAnimal, imagenAnimal);
     }
 }
