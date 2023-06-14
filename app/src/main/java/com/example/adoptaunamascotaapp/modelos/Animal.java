@@ -38,6 +38,7 @@ public class Animal implements Serializable {
         return sexo;
     }
 
+    //Prueba
     public void setSexo(SexoEnum sexo) {
         this.sexo = sexo;
     }
