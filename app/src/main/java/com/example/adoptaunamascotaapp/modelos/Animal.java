@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Animal implements Serializable {
     @SerializedName("id")
@@ -24,7 +25,7 @@ public class Animal implements Serializable {
     @SerializedName("descripcion")
     String descripcion;
     @SerializedName("fechaCreacion")
-    LocalDate fechaCreacion;
+    LocalDateTime fechaCreacion;
 
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
@@ -43,11 +44,11 @@ public class Animal implements Serializable {
         this.sexo = sexo;
     }
 
-    public LocalDate getFechaCreacion() {
+    public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

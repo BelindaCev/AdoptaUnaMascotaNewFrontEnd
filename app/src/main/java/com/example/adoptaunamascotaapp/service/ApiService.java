@@ -1,18 +1,14 @@
 package com.example.adoptaunamascotaapp.service;
 
 
-
 import com.example.adoptaunamascotaapp.modelos.Animal;
 import com.example.adoptaunamascotaapp.modelos.Galeria;
-import com.example.adoptaunamascotaapp.modelos.SolicitudAdopcion;
 import com.example.adoptaunamascotaapp.modelos.Usuario;
 import com.example.adoptaunamascotaapp.tipos.PasswordHttp;
 
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -20,9 +16,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
 
 public interface ApiService {
 
@@ -55,22 +51,21 @@ public interface ApiService {
     @GET("api/animal")
     Call<List<Animal>> getAnimals();
 
-    @POST("api/animal")
-    Call<Animal> createAnimal(@Body RequestBody animal);
+    @PUT("api/animal")
+    Call<Animal> createAnimal(@Body Animal animal);
 
 
     @PUT("api/animal")
-    Call<Animal> updateAnimal( @Body Animal animal);
+    Call<Animal> updateAnimal(@Body Animal animal);
 
     @DELETE("/api/animal/{id}")
     Call<Void> deleteAnimal(@Path("id") long id);
 
 
+    @GET("/api/galeria")
+    Call<List<Galeria>> getGaleria(@Query("idAnimal") Long idAnimal);
 
-    @GET ("/api/galeria")
-    Call <List<Galeria>> getGaleria (@Query("idAnimal") Long idAnimal);
-        @Multipart
-
+    @Multipart
     @PUT("/api/galeria")
-    Call <Galeria> createGaleria (@Query("idAnimal") Long idAnimal, @Body MultipartBody.Part foto);
+    Call<Galeria> createGaleria(@Query("idAnimal") Long idAnimal, @Part MultipartBody.Part foto);
 }

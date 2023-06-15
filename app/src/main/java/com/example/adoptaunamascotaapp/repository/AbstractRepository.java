@@ -3,6 +3,7 @@ package com.example.adoptaunamascotaapp.repository;
 import android.content.Context;
 
 import com.example.adoptaunamascotaapp.connection.NetworkConnectionInterceptor;
+import com.example.adoptaunamascotaapp.utils.SerializeUtils;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -18,7 +19,7 @@ public abstract class AbstractRepository {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(SerializeUtils.INSTANCE.getGson()))
                 .client(oktHttpClient.build())
                 .build();
     }

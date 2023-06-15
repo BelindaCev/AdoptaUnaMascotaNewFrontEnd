@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.modelos.Animal;
+import com.example.adoptaunamascotaapp.modelos.Galeria;
 import com.example.adoptaunamascotaapp.repository.AnimalRepository;
 import com.example.adoptaunamascotaapp.repository.GaleriaRepository;
 import com.example.adoptaunamascotaapp.tipos.SexoEnum;
@@ -67,7 +68,8 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
     private String categoria;
     private String subcategoria;
     private SexoEnum sexo;
-    private File imagenAnimal;
+    private File fileImagen;
+
 
 
     @Override
@@ -97,7 +99,8 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
         descripcion = findViewById(R.id.editTextDescription);
         hembra = findViewById(R.id.radioButtonHembra);
         macho = findViewById(R.id.radioButtonMacho);
-
+        animalRepository = new AnimalRepository();
+        galeriaRepository = new GaleriaRepository();
 
         galleryActivity = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -123,8 +126,8 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
 
                         ImageDecoder.Source source = ImageDecoder.createSource(tempFile);
                         fotoAnimal.setImageBitmap(ImageDecoder.decodeBitmap(source));
-                        imagenAnimal = tempFile;
-                        tempFile.delete();
+                        fileImagen = tempFile;
+                        //tempFile.delete();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -299,12 +302,11 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<Animal> call, Response<Animal> response) {
-                Toast.makeText(RegistrarAnimalActivity.this, "Animal dado de alta exitosamente", Toast.LENGTH_SHORT).show();
+
                 if (response.isSuccessful()) {
                     Animal animal = response.body();
                     registrarGaleria(animal.getId());
-                    Intent intent = new Intent(RegistrarAnimalActivity.this, ListaAnimalesAdminActivity.class);
-                    startActivity(intent);
+
                 } else {
                     Toast.makeText(RegistrarAnimalActivity.this, "Error en el alta del Animal", Toast.LENGTH_SHORT).show();
                 }
@@ -318,6 +320,19 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
     }
 
     private void registrarGaleria(Long idAnimal) {
-        galeriaRepository.createGaleria(idAnimal, imagenAnimal);
+
+        galeriaRepository.createGaleria(idAnimal,fileImagen, new Callback<Galeria>() {
+            @Override
+            public void onResponse(Call<Galeria> call, Response<Galeria> response) {
+                Toast.makeText(RegistrarAnimalActivity.this, "Animal dado de alta exitosamente", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RegistrarAnimalActivity.this, ListaAnimalesAdminActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<Galeria> call, Throwable t) {
+                Toast.makeText(RegistrarAnimalActivity.this, "Error en el alta del Animal, no se ha podido guardar la foto", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

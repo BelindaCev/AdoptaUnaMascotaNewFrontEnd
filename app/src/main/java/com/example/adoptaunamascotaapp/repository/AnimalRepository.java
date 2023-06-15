@@ -2,6 +2,7 @@ package com.example.adoptaunamascotaapp.repository;
 
 import com.example.adoptaunamascotaapp.modelos.Animal;
 import com.example.adoptaunamascotaapp.service.ApiService;
+import com.example.adoptaunamascotaapp.utils.SerializeUtils;
 import com.google.gson.Gson;
 
 
@@ -26,12 +27,9 @@ public class AnimalRepository extends AbstractRepository{
     }
 
     public void createAnimal(Animal animal, Callback<Animal> callback) {
-        // Convertir el objeto Animal a JSON
-        Gson gson = new Gson();
-        String animalJson = gson.toJson(animal);
-        RequestBody animalRequestBody = RequestBody.create(MediaType.parse("application/json"), animalJson);
 
-        Call<Animal> call = apiService.createAnimal(animalRequestBody);
+
+        Call<Animal> call = apiService.createAnimal(animal);
         call.enqueue(callback);
     }
 

@@ -25,13 +25,13 @@ public class GaleriaRepository extends AbstractRepository{
         call.enqueue(callback);
     }
 
-    public void createGaleria(Long idAnimal, File foto) {
+    public void createGaleria(Long idAnimal, File foto, Callback <Galeria> callback) {
         // Crea el cuerpo de la solicitud multipart
         RequestBody requestBody = RequestBody.create(foto, MediaType.parse("multipart/form-data"));
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", foto.getName(), requestBody);
 
         Call<Galeria> call = apiService.createGaleria(idAnimal, filePart);
 
-        call.enqueue((Callback<Galeria>) call);
+        call.enqueue(callback);
     }
 }

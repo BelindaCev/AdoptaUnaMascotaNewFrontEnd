@@ -49,6 +49,8 @@
     <string name="dar_de_alta_nuevo_usuario">Dar de alta nuevo usuario</string>
     <string name="registrar">Registrar</string>
     <string name="titulo_spinner">Filtrar</string>
+    <string name="hembra">hembra</string>
+    <string name="macho">macho</string>
 
     <string-array name="subcategorias_perro">
         <item>Filtrar</item>
