@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +27,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SolicitudAdopcionActivity extends AppCompatActivity {
-
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     private EditText editTextTelefono;
@@ -78,7 +76,6 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
                 if (validarYenviarSolicitud(solicitudAdopcion)) {
                     enviarSolicitud(solicitudAdopcion);
                 }
-                redirigirListadoGeneral();
             }
         });
     }
@@ -125,7 +122,7 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
         if (telefono.isEmpty() || direccion.isEmpty() || mensaje.isEmpty()) {
             Toast.makeText(SolicitudAdopcionActivity.this, "Debe completar todos los campos", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (telefono.length() != 9 || !telefono.matches("[0-9]+")){
+        } else if (telefono.length() != 9 || telefono.matches("[0-9]")){
             Toast.makeText(SolicitudAdopcionActivity.this, "El teléfono debe contener 9 números", Toast.LENGTH_SHORT).show();
             return false;
         } else {
@@ -161,7 +158,7 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
     }
 
     public  void redirigirListadoGeneral() {
-        Intent intent = new Intent(SolicitudAdopcionActivity.this, ListaAnimalesActivity.class);
+        Intent intent = new Intent(SolicitudAdopcionActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 
