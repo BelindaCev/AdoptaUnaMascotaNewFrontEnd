@@ -2,7 +2,8 @@ package com.example.adoptaunamascotaapp.modelos;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 public class SolicitudAdopcion {
     @SerializedName("idAnimal")
@@ -14,21 +15,11 @@ public class SolicitudAdopcion {
     @SerializedName("detalleSolicitud")
     private String detalleSolicitud;
     @SerializedName("fechaNacimiento")
-    private LocalDateTime edad;
+    private LocalDate edad;
     @SerializedName("domicilio")
     private String domicilio;
 
-    /*
-    public SolicitudAdopcion(Long idAnimal, String telefono, String detalleSolicitud, LocalDateTime edad, String domicilio) {
-        this.idAnimal = idAnimal;
-        this.telefono = telefono;
-        this.detalleSolicitud = detalleSolicitud;
-        this.edad = edad;
-        this.domicilio = domicilio;
-    }
-     */
-
-    public SolicitudAdopcion(Long idAnimal, Long idUsuario, String telefono, String detalleSolicitud, LocalDateTime edad, String domicilio) {
+    public SolicitudAdopcion(Long idAnimal, Long idUsuario, String telefono, String detalleSolicitud, LocalDate edad, String domicilio) {
         this.idAnimal = idAnimal;
         this.idUsuario = idUsuario;
         this.telefono = telefono;
@@ -69,11 +60,11 @@ public class SolicitudAdopcion {
         this.detalleSolicitud = detalleSolicitud;
     }
 
-    public LocalDateTime getEdad() {
+    public LocalDate getEdad() {
         return edad;
     }
 
-    public void setEdad(LocalDateTime edad) {
+    public void setEdad(LocalDate edad) {
         this.edad = edad;
     }
 

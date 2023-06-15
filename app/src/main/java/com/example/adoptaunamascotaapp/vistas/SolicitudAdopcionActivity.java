@@ -1,9 +1,13 @@
 package com.example.adoptaunamascotaapp.vistas;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -14,7 +18,13 @@ import com.example.adoptaunamascotaapp.modelos.SolicitudAdopcion;
 import com.example.adoptaunamascotaapp.repository.SessionManager;
 import com.example.adoptaunamascotaapp.repository.SolicitudRepository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Calendar;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,10 +33,13 @@ import retrofit2.Response;
 public class SolicitudAdopcionActivity extends AppCompatActivity {
 
     private EditText editTextTelefono;
-    private  EditText editTextFechaNacimiento;
-    private  EditText editTextDireccion;
-    private  EditText editTextMensaje;
+    private EditText editTextFechaNacimiento;
+    private EditText editTextDireccion;
+    private EditText editTextMensaje;
     private Button buttonEnviar;
+    private TextView textViewNombreAnimal;
+    TextView textViewDescripcionAnimal;
+
 
     private SolicitudRepository solicitudRepository;
 
@@ -41,54 +54,108 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
         editTextMensaje = findViewById(R.id.editTextMensaje);
         buttonEnviar = findViewById(R.id.buttonEnviar);
 
+        Intent intent = getIntent();
+        String nombreAnimal = intent.getStringExtra("nombreAnimal");
+        String descripcionAnimal = intent.getStringExtra("descripcionAnimal");
+        textViewNombreAnimal = findViewById(R.id.textViewAnimalName);
+        textViewDescripcionAnimal = findViewById(R.id.textViewDescription);
+        textViewNombreAnimal.setText(nombreAnimal);
+        textViewDescripcionAnimal.setText(descripcionAnimal);
+
+
         solicitudRepository = new SolicitudRepository();
+
+        editTextFechaNacimiento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
 
         buttonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validarYenviarSolicitud();
+                if (validarYenviarSolicitud()) {
+                    enviarSolicitud();
+                }
             }
         });
     }
 
-    private void validarYenviarSolicitud(){
-        String telefono = editTextTelefono.getText().toString().trim();
-        String fechaNacimiento = editTextFechaNacimiento.getText().toString().trim();
-        String direccion = editTextDireccion.getText().toString().trim();
-        String mensaje = editTextMensaje.getText().toString().trim();
-        LocalDateTime fechaActual = LocalDateTime.now();
-        LocalDateTime fechaNacimientoDateTime = LocalDateTime.parse(fechaNacimiento);
+    private void showDatePickerDialog() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String selectedDate = String.format(Locale.getDefault(), "%02d-%02d-%04d", dayOfMonth, month + 1, year);
+                editTextFechaNacimiento.setText(selectedDate);
+            }
+        };
 
-        if (telefono.isEmpty()) {
-            Toast.makeText(this, "Debe completar el teléfono", Toast.LENGTH_SHORT).show();
-        } else if (fechaNacimiento.isEmpty()) {
-            Toast.makeText(this, "Debe completar la fecha de nacimiento", Toast.LENGTH_SHORT).show();
-        } else if (direccion.isEmpty()) {
-            Toast.makeText(this, "Debe completar la dirección", Toast.LENGTH_SHORT).show();
-        } else if (mensaje.isEmpty()) {
-            Toast.makeText(this, "Debe completar el mensaje", Toast.LENGTH_SHORT).show();
-        } else if (fechaNacimientoDateTime.isAfter(fechaActual.minusYears(18))) {
-            Toast.makeText(this, "Debes ser mayor de edad para enviar la solicitud", Toast.LENGTH_SHORT).show();
+        // Obtiene la fecha actual para establecerla como fecha predeterminada en el diálogo
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Crea el diálogo del selector de fecha y muestra el calendario
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, dateSetListener, year, month, dayOfMonth);
+        datePickerDialog.show();
+    }
+
+    private boolean validarYenviarSolicitud() {
+        String telefono = editTextTelefono.getText().toString();
+        String fechaNacimiento = editTextFechaNacimiento.getText().toString();
+        System.out.println(fechaNacimiento);
+        String direccion = editTextDireccion.getText().toString();
+        String mensaje = editTextMensaje.getText().toString();
+
+        if (telefono.isEmpty() || fechaNacimiento.isEmpty() || direccion.isEmpty() || mensaje.isEmpty()) {
+            Toast.makeText(SolicitudAdopcionActivity.this, "Debe completar todos los campos", Toast.LENGTH_SHORT).show();
+            return false;
         } else {
-            long idAnimal = getIntent().getLongExtra("idAnimal", -1);
-            long idUsuario = SessionManager.getInstance().getUserId();
-            SolicitudAdopcion solicitudAdopcion = new SolicitudAdopcion(idAnimal, idUsuario, telefono, mensaje, LocalDateTime.parse(fechaNacimiento), direccion);
-
-            solicitudRepository.registerSolicitud(solicitudAdopcion, new Callback<SolicitudAdopcion>() {
-                @Override
-                public void onResponse(Call<SolicitudAdopcion> call, Response<SolicitudAdopcion> response) {
-                    if (response.isSuccessful()){
-                        Toast.makeText(SolicitudAdopcionActivity.this, "Solicitud enviada con éxito", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(SolicitudAdopcionActivity.this, "Error al enviar la solicitud", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<SolicitudAdopcion> call, Throwable t) {
-                    Toast.makeText(SolicitudAdopcionActivity.this, "Error en la solicitud: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate fechaNacimientoDate = LocalDate.parse(fechaNacimiento, formatter);
+            LocalDate fechaActual = LocalDate.now();
+            int edad = fechaActual.getYear() - fechaNacimientoDate.getYear();
+            if (edad <= 18) {
+                Toast.makeText(getApplicationContext(), "Debes ser mayor de edad", Toast.LENGTH_SHORT).show();
+                return false;
+        } else {
+                return true;
+            }
         }
+    }
+
+    private void enviarSolicitud() {
+        String telefono = editTextTelefono.getText().toString();
+        String fechaNacimiento = editTextFechaNacimiento.getText().toString();
+        System.out.println("Fecha de nacimiento: " + fechaNacimiento);
+        String direccion = editTextDireccion.getText().toString();
+        String mensaje = editTextMensaje.getText().toString();
+
+        long idAnimal = getIntent().getLongExtra("idAnimal", -1);
+        long idUsuario = SessionManager.getInstance().getUserId();
+
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate fechaNacimientoDate = LocalDate.parse(fechaNacimiento, formatter);
+
+        SolicitudAdopcion solicitudAdopcion = new SolicitudAdopcion(idAnimal, idUsuario, telefono, mensaje, fechaNacimientoDate, direccion);
+
+        solicitudRepository.registerSolicitud(solicitudAdopcion, new Callback<SolicitudAdopcion>() {
+            @Override
+            public void onResponse(Call<SolicitudAdopcion> call, Response<SolicitudAdopcion> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(SolicitudAdopcionActivity.this, "Solicitud enviada con éxito", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SolicitudAdopcionActivity.this, "Error al enviar la solicitud", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SolicitudAdopcion> call, Throwable t) {
+                Toast.makeText(SolicitudAdopcionActivity.this, "Error en la solicitud: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

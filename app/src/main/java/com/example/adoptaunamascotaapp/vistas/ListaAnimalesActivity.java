@@ -141,9 +141,13 @@ public class ListaAnimalesActivity extends AppCompatActivity implements AdapterV
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Animal animalSeleccionado = animalesFiltrados.get(position);
         long idAnimal = animalSeleccionado.getId();
+        String nombreAnimal = animalSeleccionado.getNombre();
+        String descripcionAnimal = animalSeleccionado.getDescripcion();
 
         Intent intent = new Intent(ListaAnimalesActivity.this, SolicitudAdopcionActivity.class);
         intent.putExtra("idAnimal", idAnimal);
+        intent.putExtra("nombreAnimal", nombreAnimal);
+        intent.putExtra("descripcionAnimal", descripcionAnimal);
         startActivity(intent);
         /*
         Intent intent = new Intent(ListaAnimalesActivity.this, SolicitudAdopcionActivity.class);
