@@ -19,10 +19,7 @@ import com.example.adoptaunamascotaapp.repository.SessionManager;
 import com.example.adoptaunamascotaapp.repository.SolicitudRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -31,6 +28,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SolicitudAdopcionActivity extends AppCompatActivity {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     private EditText editTextTelefono;
     private EditText editTextFechaNacimiento;
@@ -75,20 +74,19 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
         buttonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validarYenviarSolicitud()) {
-                    enviarSolicitud();
+                SolicitudAdopcion solicitudAdopcion = convertirSolicitud();
+
+                if (validarYenviarSolicitud(solicitudAdopcion)) {
+                    enviarSolicitud(solicitudAdopcion);
                 }
             }
         });
     }
 
     private void showDatePickerDialog() {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String selectedDate = String.format(Locale.getDefault(), "%02d-%02d-%04d", dayOfMonth, month + 1, year);
-                editTextFechaNacimiento.setText(selectedDate);
-            }
+        DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
+            String selectedDate = String.format(Locale.getDefault(), "%02d-%02d-%04d", dayOfMonth, month + 1, year);
+            editTextFechaNacimiento.setText(selectedDate);
         };
 
         // Obtiene la fecha actual para establecerla como fecha predeterminada en el diálogo
@@ -102,50 +100,49 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    private boolean validarYenviarSolicitud() {
+    private SolicitudAdopcion convertirSolicitud() {
         String telefono = editTextTelefono.getText().toString();
         String fechaNacimiento = editTextFechaNacimiento.getText().toString();
-        System.out.println(fechaNacimiento);
-        String direccion = editTextDireccion.getText().toString();
-        String mensaje = editTextMensaje.getText().toString();
-
-        if (telefono.isEmpty() || fechaNacimiento.isEmpty() || direccion.isEmpty() || mensaje.isEmpty()) {
-            Toast.makeText(SolicitudAdopcionActivity.this, "Debe completar todos los campos", Toast.LENGTH_SHORT).show();
-            return false;
-        } else {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate fechaNacimientoDate = LocalDate.parse(fechaNacimiento, formatter);
-            LocalDate fechaActual = LocalDate.now();
-            int edad = fechaActual.getYear() - fechaNacimientoDate.getYear();
-            if (edad <= 18) {
-                Toast.makeText(getApplicationContext(), "Debes ser mayor de edad", Toast.LENGTH_SHORT).show();
-                return false;
-        } else {
-                return true;
-            }
-        }
-    }
-
-    private void enviarSolicitud() {
-        String telefono = editTextTelefono.getText().toString();
-        String fechaNacimiento = editTextFechaNacimiento.getText().toString();
-        System.out.println("Fecha de nacimiento: " + fechaNacimiento);
         String direccion = editTextDireccion.getText().toString();
         String mensaje = editTextMensaje.getText().toString();
 
         long idAnimal = getIntent().getLongExtra("idAnimal", -1);
         long idUsuario = SessionManager.getInstance().getUserId();
 
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate fechaNacimientoDate = LocalDate.parse(fechaNacimiento, formatter);
+        LocalDate fechaNacimientoDate = null;
+        if (!fechaNacimiento.isEmpty()) {
+            fechaNacimientoDate = LocalDate.parse(fechaNacimiento, FORMATTER);
+        }
 
-        SolicitudAdopcion solicitudAdopcion = new SolicitudAdopcion(idAnimal, idUsuario, telefono, mensaje, fechaNacimientoDate, direccion);
+        return new SolicitudAdopcion(idAnimal, idUsuario, telefono, mensaje, fechaNacimientoDate, direccion);
+    }
 
+    private boolean validarYenviarSolicitud(SolicitudAdopcion solicitudAdopcion) {
+        String telefono = solicitudAdopcion.getTelefono();
+        String direccion = solicitudAdopcion.getDomicilio();
+        String mensaje = solicitudAdopcion.getDetalleSolicitud();
+
+        if (telefono.isEmpty() || direccion.isEmpty() || mensaje.isEmpty()) {
+            Toast.makeText(SolicitudAdopcionActivity.this, "Debe completar todos los campos", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            LocalDate fechaNacimientoDate = solicitudAdopcion.getEdad();
+            LocalDate fechaActual = LocalDate.now();
+            int edad = fechaActual.getYear() - fechaNacimientoDate.getYear();
+            if (edad <= 18) {
+                Toast.makeText(getApplicationContext(), "Debes ser mayor de edad", Toast.LENGTH_SHORT).show();
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    private void enviarSolicitud(SolicitudAdopcion solicitudAdopcion) {
         solicitudRepository.registerSolicitud(solicitudAdopcion, new Callback<SolicitudAdopcion>() {
             @Override
             public void onResponse(Call<SolicitudAdopcion> call, Response<SolicitudAdopcion> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(SolicitudAdopcionActivity.this, "Solicitud enviada con éxito", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(SolicitudAdopcionActivity.this, "Error al enviar la solicitud", Toast.LENGTH_SHORT).show();

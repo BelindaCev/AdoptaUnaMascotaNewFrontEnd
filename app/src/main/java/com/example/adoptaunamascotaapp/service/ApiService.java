@@ -3,6 +3,7 @@ package com.example.adoptaunamascotaapp.service;
 
 import com.example.adoptaunamascotaapp.modelos.Animal;
 import com.example.adoptaunamascotaapp.modelos.Galeria;
+import com.example.adoptaunamascotaapp.modelos.SolicitudAdopcion;
 import com.example.adoptaunamascotaapp.modelos.Usuario;
 import com.example.adoptaunamascotaapp.tipos.PasswordHttp;
 
