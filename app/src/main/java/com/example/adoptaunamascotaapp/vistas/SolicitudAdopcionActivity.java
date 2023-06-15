@@ -75,10 +75,10 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SolicitudAdopcion solicitudAdopcion = convertirSolicitud();
-
                 if (validarYenviarSolicitud(solicitudAdopcion)) {
                     enviarSolicitud(solicitudAdopcion);
                 }
+                redirigirListadoGeneral();
             }
         });
     }
@@ -125,6 +125,9 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
         if (telefono.isEmpty() || direccion.isEmpty() || mensaje.isEmpty()) {
             Toast.makeText(SolicitudAdopcionActivity.this, "Debe completar todos los campos", Toast.LENGTH_SHORT).show();
             return false;
+        } else if (telefono.length() != 9 || !telefono.matches("[0-9]+")){
+            Toast.makeText(SolicitudAdopcionActivity.this, "El teléfono debe contener 9 números", Toast.LENGTH_SHORT).show();
+            return false;
         } else {
             LocalDate fechaNacimientoDate = solicitudAdopcion.getEdad();
             LocalDate fechaActual = LocalDate.now();
@@ -144,6 +147,7 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
             public void onResponse(Call<SolicitudAdopcion> call, Response<SolicitudAdopcion> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(SolicitudAdopcionActivity.this, "Solicitud enviada con éxito", Toast.LENGTH_SHORT).show();
+                    redirigirListadoGeneral();
                 } else {
                     Toast.makeText(SolicitudAdopcionActivity.this, "Error al enviar la solicitud", Toast.LENGTH_SHORT).show();
                 }
@@ -155,4 +159,10 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
             }
         });
     }
+
+    public  void redirigirListadoGeneral() {
+        Intent intent = new Intent(SolicitudAdopcionActivity.this, ListaAnimalesActivity.class);
+        startActivity(intent);
+    }
+
 }
