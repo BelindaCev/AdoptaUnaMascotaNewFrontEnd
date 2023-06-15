@@ -125,9 +125,6 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
         if (telefono.isEmpty() || direccion.isEmpty() || mensaje.isEmpty()) {
             Toast.makeText(SolicitudAdopcionActivity.this, "Debe completar todos los campos", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (telefono.length() != 9 || !telefono.matches("[0-9]+")){
-            Toast.makeText(SolicitudAdopcionActivity.this, "El teléfono debe contener 9 números", Toast.LENGTH_SHORT).show();
-            return false;
         } else {
             LocalDate fechaNacimientoDate = solicitudAdopcion.getEdad();
             LocalDate fechaActual = LocalDate.now();
