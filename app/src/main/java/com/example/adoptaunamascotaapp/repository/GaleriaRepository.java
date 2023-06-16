@@ -10,6 +10,7 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -32,6 +33,10 @@ public class GaleriaRepository extends AbstractRepository{
 
         Call<Galeria> call = apiService.createGaleria(idAnimal, filePart);
 
+        call.enqueue(callback);
+    }
+    public void getFoto(Long idAnimal, Callback<ResponseBody> callback){
+        Call <ResponseBody> call = apiService.getFoto(idAnimal);
         call.enqueue(callback);
     }
 }

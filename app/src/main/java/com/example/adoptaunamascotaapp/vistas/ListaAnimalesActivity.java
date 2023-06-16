@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.modelos.Animal;
 import com.example.adoptaunamascotaapp.repository.AnimalRepository;
+import com.example.adoptaunamascotaapp.repository.GaleriaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class ListaAnimalesActivity extends AppCompatActivity implements AdapterV
     // Arrays de subcategorías de perros y gatos
     private String[] subcategoriasPerro;
     private String[] subcategoriasGato;
+    private GaleriaRepository galeriaRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class ListaAnimalesActivity extends AppCompatActivity implements AdapterV
         listaAnimales = new ArrayList<>();
         animalRepository = new AnimalRepository();
         animalesFiltrados = new ArrayList<>();
+        galeriaRepository = new GaleriaRepository();
 
         ListView listViewAnimales = findViewById(R.id.lista_animales);
         listViewAnimales.setOnItemClickListener(this);
