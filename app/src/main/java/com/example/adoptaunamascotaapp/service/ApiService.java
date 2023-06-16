@@ -10,6 +10,7 @@ import com.example.adoptaunamascotaapp.tipos.PasswordHttp;
 import java.util.List;
 
 import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -62,13 +63,15 @@ public interface ApiService {
     @DELETE("/api/animal/{id}")
     Call<Void> deleteAnimal(@Path("id") long id);
 
-
+//Solicitud
     @PUT("api/solicitud")
     Call<SolicitudAdopcion> putSolicitud (@Body SolicitudAdopcion solicitudAdopcion);
-
+//galería
     @GET ("/api/galeria")
     Call <List<Galeria>> getGaleria (@Query("idAnimal") Long idAnimal);
         @Multipart
     @PUT("/api/galeria")
     Call<Galeria> createGaleria(@Query("idAnimal") Long idAnimal, @Part MultipartBody.Part foto);
+    @PUT("/api/galeria/foto")
+    Call<ResponseBody> getFoto (@Query("idAnimal") Long idAnimal);
 }
