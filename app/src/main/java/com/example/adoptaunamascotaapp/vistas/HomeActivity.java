@@ -23,6 +23,15 @@ public class HomeActivity extends AppCompatActivity {
         perroImageButton = findViewById(R.id.perro);
         gatoImageButton = findViewById(R.id.gato);
 
+
+        ImageButton btnLogout = findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logoutUser();
+            }
+        });
+
         perroImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +51,12 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(HomeActivity.this, ListaAnimalesActivity.class);
         intent.putExtra("categoria", categoria);
         startActivity(intent);
+    }
+
+    private void logoutUser() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
 

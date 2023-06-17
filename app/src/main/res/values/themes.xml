@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.AdoptaUnaMascotaApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/azul_oscuro</item>
         <item name="colorPrimaryVariant">@color/azul_claro</item>
@@ -12,5 +13,12 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/azul_oscuro</item>
+        <item name="android:elevation">4dp</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Otros atributos del estilo de la Toolbar -->
     </style>
 </resources>

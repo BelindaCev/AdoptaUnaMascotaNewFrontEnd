@@ -23,14 +23,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PruebaAdapter extends ArrayAdapter<Animal> {
+public class BelindaAdapter extends ArrayAdapter<Animal> {
 
     private Context context;
     private List<Animal> animalList;
     private final GaleriaRepository galeriaRepository = new GaleriaRepository();
 
 
-    public PruebaAdapter(Context context, List<Animal> animalList) {
+    public BelindaAdapter(Context context, List<Animal> animalList) {
         super(context, 0, animalList);
         this.context = context;
         this.animalList = animalList;

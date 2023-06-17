@@ -52,10 +52,7 @@
         <!-- Pantallas relacionadas con el usuario -->
         <activity android:name=".vistas.ListaAnimalesActivity" />
         <activity android:name=".vistas.HomeActivity" />
-        <activity android:name=".vistas.SolicitudAdopcionActivity" />
-
-
-
+        <activity android:name=".vistas.SolicitudAdopcionActivity"/>
 
     </application>
 

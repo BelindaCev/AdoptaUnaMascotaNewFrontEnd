@@ -1,21 +1,27 @@
 package com.example.adoptaunamascotaapp.vistas;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.modelos.Animal;
 import com.example.adoptaunamascotaapp.modelos.Galeria;
 import com.example.adoptaunamascotaapp.repository.GaleriaRepository;
-import com.squareup.picasso.Picasso;
 
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +30,7 @@ public class AnimalesAdapter extends ArrayAdapter<Animal> {
 
     private Context context;
     private List<Animal> animalList;
+    private final GaleriaRepository galeriaRepository = new GaleriaRepository();
 
     public AnimalesAdapter(Context context, List<Animal> animalList) {
         super(context, 0, animalList);
@@ -81,7 +88,7 @@ public class AnimalesAdapter extends ArrayAdapter<Animal> {
 
                         // Cargar la foto utilizando una biblioteca de manejo de imágenes (como Picasso, Glide, etc.)
                         // Aquí, se muestra un ejemplo utilizando Picasso
-                        Picasso.get().load(rutaFoto).into(imageView);
+                        //Picasso.get().load(rutaFoto).into(imageView);
                     }
                 }
             }

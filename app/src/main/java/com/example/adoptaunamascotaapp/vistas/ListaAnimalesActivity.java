@@ -152,10 +152,6 @@ public class ListaAnimalesActivity extends AppCompatActivity implements AdapterV
         intent.putExtra("nombreAnimal", nombreAnimal);
         intent.putExtra("descripcionAnimal", descripcionAnimal);
         startActivity(intent);
-        /*
-        Intent intent = new Intent(ListaAnimalesActivity.this, SolicitudAdopcionActivity.class);
-        startActivity(intent);
-         */
     }
 
 }

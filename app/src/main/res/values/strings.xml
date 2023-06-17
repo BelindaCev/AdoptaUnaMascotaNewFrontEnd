@@ -51,6 +51,11 @@
     <string name="titulo_spinner">Filtrar</string>
     <string name="hembra">hembra</string>
     <string name="macho">macho</string>
+    <string name="logout">Logout</string>
+
+    <string name="navigation_drawer_open">Abrir</string>
+    <string name="navigation_drawer_close">Cerrar</string>
+
 
     <string-array name="subcategorias_perro">
         <item>Filtrar</item>
