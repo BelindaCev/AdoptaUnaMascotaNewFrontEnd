@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -147,10 +148,12 @@ public class ListaAnimalesActivity extends AppCompatActivity implements AdapterV
         String nombreAnimal = animalSeleccionado.getNombre();
         String descripcionAnimal = animalSeleccionado.getDescripcion();
 
+
         Intent intent = new Intent(ListaAnimalesActivity.this, SolicitudAdopcionActivity.class);
         intent.putExtra("idAnimal", idAnimal);
         intent.putExtra("nombreAnimal", nombreAnimal);
         intent.putExtra("descripcionAnimal", descripcionAnimal);
+        intent.putExtra("categoria", categoria);
         startActivity(intent);
     }
 

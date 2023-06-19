@@ -9,13 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.modelos.Animal;
-import com.example.adoptaunamascotaapp.modelos.Galeria;
 import com.example.adoptaunamascotaapp.repository.GaleriaRepository;
-
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,6 +28,7 @@ public class AnimalesAdapter extends ArrayAdapter<Animal> {
     private Context context;
     private List<Animal> animalList;
     private final GaleriaRepository galeriaRepository = new GaleriaRepository();
+
 
     public AnimalesAdapter(Context context, List<Animal> animalList) {
         super(context, 0, animalList);
@@ -50,17 +48,36 @@ public class AnimalesAdapter extends ArrayAdapter<Animal> {
         TextView textViewAnimalName = convertView.findViewById(R.id.nombreItemAnimal);
         TextView textViewAnimalDescription = convertView.findViewById(R.id.descripcionItemAnimal);
 
-        // Configurar la imagen, nombre y descripción del animal
+
+        if (animal.getCategoria().equals("gato")){
+            imageViewAnimal.setImageResource(R.drawable.icono_gato);
+        }else{
+            imageViewAnimal.setImageResource(R.drawable.icono_perro);
+        }
         textViewAnimalName.setText(animal.getNombre());
         textViewAnimalDescription.setText(animal.getDescripcion());
 
-        // Obtener el ID del animal
-        long idAnimal = animal.getId();
 
-        // Llamar al método para cargar la foto del animal
-        cargarFotoAnimal(idAnimal, imageViewAnimal);
+        // Configurar la imagen, nombre y descripción del animal
+        galeriaRepository.getFoto(animal.getId(), new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try (InputStream inputStream = response.body().byteStream()) {
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        imageViewAnimal.setImageBitmap(bitmap);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
 
-        // Resto del código existente
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
 
         return convertView;
     }
@@ -69,34 +86,5 @@ public class AnimalesAdapter extends ArrayAdapter<Animal> {
         animalList.clear();
         animalList.addAll(nuevosAnimales);
         notifyDataSetChanged();
-    }
-
-    private void cargarFotoAnimal(long idAnimal, ImageView imageView) {
-        GaleriaRepository galeriaRepository = new GaleriaRepository();
-        galeriaRepository.getGaleria(new Callback<List<Galeria>>() {
-            @Override
-            public void onResponse(Call<List<Galeria>> call, Response<List<Galeria>> response) {
-                if (response.isSuccessful()) {
-                    List<Galeria> galeriaList = response.body();
-                    if (galeriaList != null && !galeriaList.isEmpty()) {
-                        Galeria galeria = galeriaList.get(0); // Obtener la primera galería (puedes ajustarlo según tu lógica)
-
-                        // Obtener la ruta de la foto del animal
-                        String rutaFoto = galeria.getRutaFoto();
-
-                        System.out.println(rutaFoto);
-
-                        // Cargar la foto utilizando una biblioteca de manejo de imágenes (como Picasso, Glide, etc.)
-                        // Aquí, se muestra un ejemplo utilizando Picasso
-                        //Picasso.get().load(rutaFoto).into(imageView);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Galeria>> call, Throwable t) {
-                // Manejar el error en la respuesta del servidor
-            }
-        }, idAnimal);
     }
 }

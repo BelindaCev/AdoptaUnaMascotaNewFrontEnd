@@ -2,10 +2,13 @@ package com.example.adoptaunamascotaapp.vistas;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,14 +17,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adoptaunamascotaapp.R;
 import com.example.adoptaunamascotaapp.modelos.SolicitudAdopcion;
+import com.example.adoptaunamascotaapp.repository.GaleriaRepository;
 import com.example.adoptaunamascotaapp.repository.SessionManager;
 import com.example.adoptaunamascotaapp.repository.SolicitudRepository;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +43,8 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
     private Button buttonEnviar;
     private TextView textViewNombreAnimal;
     TextView textViewDescripcionAnimal;
+    GaleriaRepository galeriaRepository;
+    ImageView imageViewAnimal;
 
 
     private SolicitudRepository solicitudRepository;
@@ -50,10 +59,40 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
         editTextDireccion = findViewById(R.id.editTextDireccion);
         editTextMensaje = findViewById(R.id.editTextMensaje);
         buttonEnviar = findViewById(R.id.buttonEnviar);
+        galeriaRepository = new GaleriaRepository();
+        imageViewAnimal = findViewById(R.id.imageViewAnimal);
 
         Intent intent = getIntent();
         String nombreAnimal = intent.getStringExtra("nombreAnimal");
         String descripcionAnimal = intent.getStringExtra("descripcionAnimal");
+        String categoria = intent.getStringExtra("categoria");
+
+        if (categoria.equals("gato")){
+            imageViewAnimal.setImageResource(R.drawable.icono_gato);
+        }else{
+            imageViewAnimal.setImageResource(R.drawable.icono_perro);
+        }
+
+        galeriaRepository.getFoto(intent.getLongExtra("idAnimal", 1), new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try (InputStream inputStream = response.body().byteStream()) {
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        imageViewAnimal.setImageBitmap(bitmap);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+
+                    }
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
         textViewNombreAnimal = findViewById(R.id.textViewAnimalName);
         textViewDescripcionAnimal = findViewById(R.id.textViewDescription);
         textViewNombreAnimal.setText(nombreAnimal);

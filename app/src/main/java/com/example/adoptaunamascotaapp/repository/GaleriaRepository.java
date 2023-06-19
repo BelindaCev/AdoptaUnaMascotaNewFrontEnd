@@ -39,4 +39,5 @@ public class GaleriaRepository extends AbstractRepository{
         Call <ResponseBody> call = apiService.getFoto(idAnimal);
         call.enqueue(callback);
     }
+
 }

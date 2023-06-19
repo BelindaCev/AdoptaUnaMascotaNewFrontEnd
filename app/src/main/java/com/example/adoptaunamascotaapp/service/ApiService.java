@@ -72,6 +72,8 @@ public interface ApiService {
         @Multipart
     @PUT("/api/galeria")
     Call<Galeria> createGaleria(@Query("idAnimal") Long idAnimal, @Part MultipartBody.Part foto);
-    @PUT("/api/galeria/foto")
+    @GET("/api/galeria/foto")
     Call<ResponseBody> getFoto (@Query("idAnimal") Long idAnimal);
+    @DELETE("/api/galeria/{id}")
+    Call <Void> borrarGaleria (@Path("id") long id);
 }

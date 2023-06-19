@@ -42,6 +42,7 @@ public class AnimalRepository extends AbstractRepository{
     }
 
     public void deleteAnimal(long id, Callback<Void> callback) {
+
         Call<Void> call = apiService.deleteAnimal(id);
         call.enqueue(callback);
     }
