@@ -49,7 +49,7 @@ public class AnimalesAdapter extends ArrayAdapter<Animal> {
         TextView textViewAnimalDescription = convertView.findViewById(R.id.descripcionItemAnimal);
 
 
-        if (animal.getCategoria().equals("gato")){
+        if (animal.getCategoria().equals("Gato")){
             imageViewAnimal.setImageResource(R.drawable.icono_gato);
         }else{
             imageViewAnimal.setImageResource(R.drawable.icono_perro);

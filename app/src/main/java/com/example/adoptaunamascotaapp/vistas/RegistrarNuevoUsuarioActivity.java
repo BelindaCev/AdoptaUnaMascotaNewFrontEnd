@@ -49,7 +49,7 @@ public class RegistrarNuevoUsuarioActivity extends AppCompatActivity implements 
 
         userRepository = new UserRepository();
 
-        irHome.findViewById(R.id.irHome);
+        irHome = findViewById(R.id.irHome);
 
         irHome.setOnClickListener(this);
 

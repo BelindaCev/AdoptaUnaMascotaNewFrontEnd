@@ -36,9 +36,9 @@
     <string name="gato">Gato</string>
     <string name="menor_de_6_meses">Menor de 6 meses</string>
     <string name="mayor_de_6_meses">Mayor de 6 meses</string>
-    <string name="tama_o_peque_o">Tamaño pequeño</string>
-    <string name="tama_o_mediano">Tamaño mediano</string>
-    <string name="tama_o_grande">Tamaño grande</string>
+    <string name="tama_o_peque_o">Pequeño</string>
+    <string name="tama_o_mediano">Mediano</string>
+    <string name="tama_o_grande">Grande</string>
     <string name="selecciona_fecha_de_nacimiento">Selecciona fecha de nacimiento</string>
     <string name="raza_de_la_mascota">Raza de la mascota</string>
     <string name="descripci_n_de_la_mascota">Descripción de la mascota</string>
