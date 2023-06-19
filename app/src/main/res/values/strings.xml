@@ -1,16 +1,16 @@
 <resources>
-    <string name="app_name">AdoptaUnaMascotaApp</string>
+    <string name="app_name">Adopta Una Mascota App</string>
     <string name="login_text">Login</string>
     <string name="nombre_usuario"> Nombre de usuario</string>
     <string name="password"> Contraseña</string>
     <string name="recordar_password">¿Has olvidado tu contraseña? Pulsa</string>
     <string name="iniciar_sesion">INICIAR SESION</string>
-    <string name="registrate">¿Todavía no tienes cuenta? Regístrate</string>
+    <string name="registrate">¿Todavía no tienes cuenta? Regístrate </string>
     <string name="aqui"> aquí</string>
     <string name="escribe_tu_correo">Introduce tu email y te enviaremos un correo</string>
     <string name="email"> Email</string>
     <string name="enviar">ENVIAR</string>
-    <string name="registate_y_adopta_una_mascota_fabulosa">Registate y adopta una mascota fabulosa</string>
+    <string name="registate_y_adopta_una_mascota_fabulosa">Regístrate y adopta una mascota fabulosa</string>
     <string name="nombre"> Nombre</string>
     <string name="registrate_button">REGISTRATE</string>
     <string name="todos_los_derechos_reservados">Todos los derechos reservados.</string>

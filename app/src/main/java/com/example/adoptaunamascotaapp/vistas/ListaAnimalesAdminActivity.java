@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,11 +26,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListaAnimalesAdminActivity extends AppCompatActivity {
+public class ListaAnimalesAdminActivity extends AppCompatActivity implements View.OnClickListener {
 
     AnimalesAdminAdapter adapter;
    ArrayList<Animal> listaAnimales;
     private AnimalRepository animalRepository;
+
+    private ImageView irHome;
 
     private ImageButton nuevoAnimalButton;
 
@@ -39,6 +42,10 @@ public class ListaAnimalesAdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_animales_admin);
 
         nuevoAnimalButton = findViewById(R.id.botonCrearAnimal);
+
+        irHome = findViewById(R.id.irHome);
+
+        irHome.setOnClickListener(this);
 
         nuevoAnimalButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +123,12 @@ public class ListaAnimalesAdminActivity extends AppCompatActivity {
 
     private void abrirDarAltaAnimal() {
         Intent intent = new Intent(ListaAnimalesAdminActivity.this, RegistrarAnimalActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(ListaAnimalesAdminActivity.this, HomeAdminActivity.class);
         startActivity(intent);
     }
 }

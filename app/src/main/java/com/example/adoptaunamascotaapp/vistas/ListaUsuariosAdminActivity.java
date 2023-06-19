@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,11 +25,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListaUsuariosAdminActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class ListaUsuariosAdminActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
     ArrayList<Usuario> listaUsuarios;
     UserRepository userRepository;
 
     ImageButton nuevoUsuarioButton;
+
+    ImageView irHome;
 
     UsuariosAdapter adapter;
 
@@ -38,6 +41,10 @@ public class ListaUsuariosAdminActivity extends AppCompatActivity implements Ada
         setContentView(R.layout.activity_lista_usuarios_admin);
 
         nuevoUsuarioButton = findViewById(R.id.botonCrearUsuario);
+
+        irHome = findViewById(R.id.irHome);
+
+        irHome.setOnClickListener(this);
 
         nuevoUsuarioButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +128,12 @@ public class ListaUsuariosAdminActivity extends AppCompatActivity implements Ada
 
     private void abrirDarAltaUsuario() {
         Intent intent = new Intent(ListaUsuariosAdminActivity.this, RegistrarNuevoUsuarioActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(ListaUsuariosAdminActivity.this, HomeAdminActivity.class);
         startActivity(intent);
     }
 }

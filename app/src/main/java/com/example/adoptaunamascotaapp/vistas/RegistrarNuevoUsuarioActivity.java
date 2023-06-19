@@ -3,10 +3,13 @@ package com.example.adoptaunamascotaapp.vistas;
 import static com.example.adoptaunamascotaapp.R.id.botonRegistrarUsuario;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.telecom.Call;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -24,11 +27,13 @@ import com.example.adoptaunamascotaapp.tipos.TipoUsuario;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegistrarNuevoUsuarioActivity extends AppCompatActivity {
+public class RegistrarNuevoUsuarioActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText nombreET, apellidosET, emailET, passwordET, passwords2ET;
     private Button registrarBTN;
     private UserRepository userRepository;
+
+    private ImageView irHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,10 @@ public class RegistrarNuevoUsuarioActivity extends AppCompatActivity {
         registrarBTN = findViewById(R.id.botonRegistrarUsuario);
 
         userRepository = new UserRepository();
+
+        irHome.findViewById(R.id.irHome);
+
+        irHome.setOnClickListener(this);
 
         registrarBTN.setOnClickListener(v -> {
             if (validateFields()) {
@@ -99,5 +108,11 @@ public class RegistrarNuevoUsuarioActivity extends AppCompatActivity {
             public void onFailure(retrofit2.Call<Usuario> call, Throwable t) {
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(RegistrarNuevoUsuarioActivity.this, HomeAdminActivity.class);
+        startActivity(intent);
     }
 }

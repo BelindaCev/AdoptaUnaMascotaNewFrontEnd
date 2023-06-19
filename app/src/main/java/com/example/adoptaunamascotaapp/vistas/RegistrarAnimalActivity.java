@@ -36,11 +36,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegistrarAnimalActivity extends AppCompatActivity {
+public class RegistrarAnimalActivity extends AppCompatActivity implements View.OnClickListener {
 
     public RadioGroup radioGroupCategories;
     public RadioGroup radioGroupSubcategories;
     public Button galeriaButtom;
+
+    public ImageView irHome;
     public Button camaraButtom;
     private ActivityResultLauncher<Intent> cameraLauncher;
     private ActivityResultLauncher<Intent> galleryLauncher;
@@ -81,6 +83,9 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
         camaraButtom = findViewById(R.id.buttonCamera);
         fotoAnimal = findViewById(R.id.imageView);
 
+        irHome = findViewById(R.id.irHome);
+
+        irHome.setOnClickListener(this);
 
         radioGroupCategories = findViewById(R.id.radioGroupCategories);
         radioGroupSubcategories = findViewById(R.id.radioGroupSubcategories);
@@ -334,5 +339,11 @@ public class RegistrarAnimalActivity extends AppCompatActivity {
                 Toast.makeText(RegistrarAnimalActivity.this, "Error en el alta del Animal, no se ha podido guardar la foto", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(RegistrarAnimalActivity.this, HomeAdminActivity.class);
+        startActivity(intent);
     }
 }

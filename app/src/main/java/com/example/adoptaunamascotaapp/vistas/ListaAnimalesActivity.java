@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListaAnimalesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class ListaAnimalesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     List<Animal> listaAnimales;
 
@@ -33,6 +33,8 @@ public class ListaAnimalesActivity extends AppCompatActivity implements AdapterV
     private List<Animal> animalesFiltrados;
     private AnimalesAdapter adapter;
     private String categoria;
+
+    private ImageView irHome;
 
     // Arrays de subcategorías de perros y gatos
     private String[] subcategoriasPerro;
@@ -48,6 +50,10 @@ public class ListaAnimalesActivity extends AppCompatActivity implements AdapterV
         animalRepository = new AnimalRepository();
         animalesFiltrados = new ArrayList<>();
         galeriaRepository = new GaleriaRepository();
+
+        irHome = findViewById(R.id.irHome);
+
+        irHome.setOnClickListener(this);
 
         ListView listViewAnimales = findViewById(R.id.lista_animales);
         listViewAnimales.setOnItemClickListener(this);
@@ -157,4 +163,9 @@ public class ListaAnimalesActivity extends AppCompatActivity implements AdapterV
         startActivity(intent);
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(ListaAnimalesActivity.this, HomeActivity.class);
+        startActivity(intent);
+    }
 }

@@ -33,13 +33,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SolicitudAdopcionActivity extends AppCompatActivity {
+public class SolicitudAdopcionActivity extends AppCompatActivity implements View.OnClickListener {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     private EditText editTextTelefono;
     private EditText editTextFechaNacimiento;
     private EditText editTextDireccion;
     private EditText editTextMensaje;
+
+    private ImageView irHome;
     private Button buttonEnviar;
     private TextView textViewNombreAnimal;
     TextView textViewDescripcionAnimal;
@@ -61,6 +63,9 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
         buttonEnviar = findViewById(R.id.buttonEnviar);
         galeriaRepository = new GaleriaRepository();
         imageViewAnimal = findViewById(R.id.imageViewAnimal);
+        irHome = findViewById(R.id.irHome);
+
+        irHome.setOnClickListener(this);
 
         Intent intent = getIntent();
         String nombreAnimal = intent.getStringExtra("nombreAnimal");
@@ -201,4 +206,9 @@ public class SolicitudAdopcionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(SolicitudAdopcionActivity.this, HomeActivity.class);
+        startActivity(intent);
+    }
 }
